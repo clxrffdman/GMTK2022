@@ -5,24 +5,28 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    public float health;
+    public bool alive;
+    public float maxHealth;
+    protected float health;
     public Slider bar;
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
-        bar.maxValue = health;
-        bar.value = health;
+        alive = true;
+        bar.maxValue = maxHealth;
+        health = maxHealth;
+        setBar();
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
-    /*
+    
         if(Input.GetKeyDown(KeyCode.S))
             changeHealth(-20);
         if(Input.GetKeyDown(KeyCode.A))
             changeHealth(20);
-            */
+            
     }
     public void setBar()
     {
@@ -32,9 +36,11 @@ public class Health : MonoBehaviour
     {
         health = health+amount;
         setBar();
+        if(health <= 0)
+            this.Death();
     }
-    public void Death()
+    public virtual void Death()
     {
-        //idk
+        alive = false;
     }
 }
