@@ -28,7 +28,7 @@ public class PlayerHealth : Health
         BallsUI();
         if(ballsLeft <= 0)
             GameOver();
-        if(health<=0)
+        if(health <= 0)
         {
             health = maxHealth;
             //some animation ig

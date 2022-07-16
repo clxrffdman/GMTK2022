@@ -32,9 +32,13 @@ public class Health : MonoBehaviour
     {
         bar.value = health;
     }
-    public void changeHealth(int amount)
+    public void changeHealth(float amount)
     {
-        health = health+amount;
+        float added = health+amount;
+        if(added < maxHealth)
+            health = added;
+        else
+            health = maxHealth;
         setBar();
         if(health <= 0)
             this.Death();
