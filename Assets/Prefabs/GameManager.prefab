@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1435934861
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1435934862}
+  m_Layer: 0
+  m_Name: SoundParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1435934862
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1435934861}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8613795580928232710}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8613795580928232709
 GameObject:
   m_ObjectHideFlags: 0
@@ -14,6 +45,7 @@ GameObject:
   - component: {fileID: 8613795580928232713}
   - component: {fileID: 8613795580928232715}
   - component: {fileID: 8613795580928232714}
+  - component: {fileID: 1308669037}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -32,7 +64,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1435934862}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -48,9 +81,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343f4191e8d5d5c4d8b680701eeea5c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SFXInstance: {fileID: 0}
+  SFXInstance: {fileID: 4084887617753403306, guid: 0a25c7ea4da1292478b3d886c6b3140d,
+    type: 3}
+  soundParent: {fileID: 1435934862}
   nextPseudoball: {fileID: 0}
   phealth: {fileID: 8613795580928232713}
+  boss: {fileID: 1308669037}
   currentPinball: {fileID: 0}
   totalPoints: 0
   pointText: {fileID: 0}
@@ -63,9 +99,13 @@ MonoBehaviour:
   maxCharge: 20
   exitZone: {fileID: 0}
   currentDiceIndex: 6
+  maxDiceIndex: 0
   currentRoll: 1
   previousRoll: 1
   diceRollText: {fileID: 0}
+  diceRollSFXList:
+  - {fileID: 8300000, guid: 399094fad18720e4fa0d043e900d3f4b, type: 3}
+  - {fileID: 8300000, guid: 9e4ad31d0b20a0c45a6ece2811a69d41, type: 3}
 --- !u!114 &8613795580928232712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,6 +122,7 @@ MonoBehaviour:
   timerBar: {fileID: 0}
   buffer: 0
   todo: {fileID: 8613795580928232715}
+  anim: {fileID: 0}
 --- !u!114 &8613795580928232713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,8 +155,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreModifier: 0.2
-  boss: {fileID: 8613795580928232714}
-  player: {fileID: 8613795580928232713}
+  scoreThreshold: 0
+  healthRegain: 0
 --- !u!114 &8613795580928232714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,3 +172,17 @@ MonoBehaviour:
   alive: 0
   maxHealth: 300
   bar: {fileID: 0}
+--- !u!114 &1308669037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8613795580928232709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8e57be99da410e449aed21a7d1861b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bossHealth: {fileID: 8613795580928232714}
+  spawnableObstacles: []
