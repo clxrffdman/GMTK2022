@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Combat : MonoBehaviour
 {
-    public float scoreModifier;
+    public float baseScoreModifier;
+    private float scoreModifier;
+    private float basePhaseTime;
+    public Phases phasething;
+    public float phaseTimeModifier;
     public int scoreThreshold;//for utility > is good stuff < is bad stuff idk
     bool invincible;
     public float healthRegain;
@@ -12,7 +16,8 @@ public class Combat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        basePhaseTime = phasething.phaseTime;
+        scoreModifier = baseScoreModifier;
     }
 
     // Update is called once per frame
@@ -59,52 +64,80 @@ public class Combat : MonoBehaviour
     }
     public void Utility(int roll, int score)
     {
-        Debug.Log("u");
-        int current = GameManager.Instance.currentRoll;
+        phasething.phaseTime = basePhaseTime;
+        scoreModifier = baseScoreModifier;
+        //Debug.Log("u");
+        int current = roll;
         int previous = GameManager.Instance.previousRoll;
         if(current == 1)
         {
+            //Debug.Log("1");
             //increase/decrease diceindex, if below dec, if above inc
             if(score < scoreThreshold)
             {
+                //Debug.Log("?");
                 if(GameManager.Instance.currentDiceIndex > 1)
                     GameManager.Instance.currentDiceIndex--;
             }
             else
             {
+                //Debug.Log("cool");
                 if(GameManager.Instance.currentDiceIndex < GameManager.Instance.maxDiceIndex)
+                {
                     GameManager.Instance.currentDiceIndex++;
+                   }
             }
         }
         else if(current == 2  || current == 3)
         {
+            //Debug.Log("2");
+            //only heal if under threshold, regain a ball if over
             if(score < scoreThreshold)
             {
                 GameManager.Instance.phealth.changeHealth(healthRegain);
             }
             else
             {
+                //Debug.Log("wait");
                 GameManager.Instance.phealth.changeHealth(GameManager.Instance.phealth.maxHealth);
-                GameManager.Instance.phealth.changeBalls(1);
+                if(GameManager.Instance.phealth.ballsLeft < GameManager.Instance.phealth.balls.Length)
+                    GameManager.Instance.phealth.changeBalls(1);
             }
         }
-        else if(current == 4)
+        else if(current == 4 || current == 5)
         {
-
-        }
-        else if(current == 5)
-        {
-            
+            //Debug.Log("4");
+            if(score < scoreThreshold)
+            {
+                phasething.phaseTime-=phaseTimeModifier;
+                phasething.timerBar.maxValue-=phaseTimeModifier;
+            }
+            else
+            {
+                phasething.phaseTime+=phaseTimeModifier;
+                phasething.timerBar.maxValue+=phaseTimeModifier;
+            }
         }
         else if(current == 6)
         {
-            if(previous == 6)
+            //Debug.Log("6");
+            if(score < scoreThreshold)
+            {
+                scoreModifier = scoreModifier*0.5f;
+            }
+            else
+            {
+                scoreModifier = scoreModifier*2;
+            }
+            if(previous == 6 && GameManager.Instance.currentRoll == 6)
                 invincible = true;
-            
         }
         else
         {
-
+            //Debug.Log(":)");
+            Defense(1, score);
+            Defense(2, score);
+            Defense(6, score);
         }
     }
 }
