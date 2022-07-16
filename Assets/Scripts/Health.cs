@@ -21,11 +21,12 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     public virtual void Update()
     {
-    
+    /*
         if(Input.GetKeyDown(KeyCode.S))
             changeHealth(-20);
         if(Input.GetKeyDown(KeyCode.A))
             changeHealth(20);
+            */
             
     }
     public void setBar()
