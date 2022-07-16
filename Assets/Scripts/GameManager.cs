@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [Header("Pinball Objects/Stats")]
     public GameObject nextPseudoball;
     public PlayerHealth phealth;
+    public BossManager boss;
     public PinballController currentPinball;
     public int totalPoints;
     public TextMeshProUGUI pointText;
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
     public ExitZone exitZone;
     [Header("Dice")]
     public int currentDiceIndex;
+    public int maxDiceIndex;
     public int currentRoll;
     public int previousRoll;
     public TextMeshProUGUI diceRollText;
