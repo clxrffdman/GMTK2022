@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    [Header("Generics")]
+    public GameObject SFXInstance;
+    public Transform soundParent;
     [Header("Pinball Objects/Stats")]
     public GameObject nextPseudoball;
     public PlayerHealth phealth;
@@ -27,6 +30,7 @@ public class GameManager : MonoBehaviour
     public int currentRoll;
     public int previousRoll;
     public TextMeshProUGUI diceRollText;
+    public List<AudioClip> diceRollSFXList;
 
 
     private void Awake()
@@ -62,7 +66,7 @@ public class GameManager : MonoBehaviour
     void UpdateUIText()
     {
         pointText.text = currentPinball.currentPoints + "";
-        diceRollText.text = currentRoll + "";
+        
     }
 
     public void DoAttack()
@@ -72,9 +76,26 @@ public class GameManager : MonoBehaviour
 
     public int RollCurrentDice()
     {
+        var sound = Instantiate(SFXInstance,transform.position,Quaternion.identity);
+        sound.transform.parent = soundParent;
+        sound.GetComponent<SoundSample>().SpawnSound(diceRollSFXList[Random.Range(0, diceRollSFXList.Count)], 0, 1);
+
         previousRoll = currentRoll;
         currentRoll = Random.Range(1, currentDiceIndex + 1);
+        StartCoroutine(UpdateDiceRollText());
         return currentRoll;
+    }
+
+    public IEnumerator UpdateDiceRollText()
+    {
+        int iterations = 10;
+        for(int i = 0; i < iterations; i++)
+        {
+            diceRollText.text = Random.Range(1, currentDiceIndex + 1) + "";
+            yield return new WaitForSeconds(0.05f);
+        }
+        diceRollText.text = currentRoll + "";
+
     }
 
     public IEnumerator ShakeTable()

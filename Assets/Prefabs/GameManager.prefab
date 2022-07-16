@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343f4191e8d5d5c4d8b680701eeea5c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SFXInstance: {fileID: 0}
   nextPseudoball: {fileID: 0}
   phealth: {fileID: 8613795580928232713}
   currentPinball: {fileID: 0}
