@@ -12,12 +12,14 @@ public class Phases : MonoBehaviour
     private bool timergo;
     public float buffer;
     public Combat todo;
+    public Animator anim;
     private int currentState = 0;
     int stateIndex;
     public Dictionary <int, Action<int, int>> whatdo;
     // Start is called before the first frame updatea
     void Start()
     {
+        timerBar.maxValue = phaseTime;
         timergo = false;
         whatdo = new Dictionary<int, Action<int, int>>
         {
@@ -44,6 +46,7 @@ public class Phases : MonoBehaviour
             currentState++;
             if(currentState > 2)
                 currentState = 0;
+            anim.SetInteger("phase", currentState);
         }
     }
     // Update is called once per frame
