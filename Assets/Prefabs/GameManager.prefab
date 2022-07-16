@@ -1,0 +1,132 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8613795580928232709
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8613795580928232710}
+  - component: {fileID: 8613795580928232711}
+  - component: {fileID: 8613795580928232712}
+  - component: {fileID: 8613795580928232713}
+  - component: {fileID: 8613795580928232715}
+  - component: {fileID: 8613795580928232714}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8613795580928232710
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8613795580928232709}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8613795580928232711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8613795580928232709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343f4191e8d5d5c4d8b680701eeea5c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextPseudoball: {fileID: 0}
+  phealth: {fileID: 8613795580928232713}
+  currentPinball: {fileID: 0}
+  totalPoints: 0
+  pointText: {fileID: 0}
+  masterTableObj: {fileID: 0}
+  chargeBar: {fileID: 0}
+  isLaunching: 0
+  launchCharge: 0
+  ballChargeRate: 15
+  baseLaunchMultiplier: 3
+  maxCharge: 20
+  exitZone: {fileID: 0}
+  currentDiceIndex: 6
+  currentRoll: 1
+  previousRoll: 1
+  diceRollText: {fileID: 0}
+--- !u!114 &8613795580928232712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8613795580928232709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0018757f4eeca9f4c9e0d69553dc0713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  phaseTime: 10
+  timerBar: {fileID: 0}
+  buffer: 0
+  todo: {fileID: 8613795580928232715}
+--- !u!114 &8613795580928232713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8613795580928232709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c0b397ef664b2e45bf22ff014068a77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alive: 0
+  maxHealth: 50
+  bar: {fileID: 0}
+  balls:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &8613795580928232715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8613795580928232709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6819aaa1923ff664daa338ce08d5a4f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreModifier: 0.2
+  boss: {fileID: 8613795580928232714}
+  player: {fileID: 8613795580928232713}
+--- !u!114 &8613795580928232714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8613795580928232709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35047a10541147b42b0312e8786491fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alive: 0
+  maxHealth: 300
+  bar: {fileID: 0}
