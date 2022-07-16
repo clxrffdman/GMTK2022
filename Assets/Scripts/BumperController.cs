@@ -6,6 +6,7 @@ public class BumperController : MonoBehaviour
 {
 
     public float bumpForceMultiplier;
+    public int pointWorth;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,7 @@ public class BumperController : MonoBehaviour
         if(collision.transform.tag == "Player")
         {
             collision.transform.GetComponent<PinballMovement>().rb.AddForce(collision.GetContact(0).normal * -bumpForceMultiplier, ForceMode.Impulse);
+            PinballController.Instance.IncrementPoints(pointWorth);
         }
     }
 }

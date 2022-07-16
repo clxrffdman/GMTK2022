@@ -20,7 +20,7 @@ public class Deathbox : MonoBehaviour
     {
         if(other.gameObject.name == "Pinball")
         {
-            other.transform.localPosition = new Vector3(3.38f, 0, -1f);
+            other.transform.localPosition = new Vector3(11.02f, -22, -1f);
         }
     }
 }

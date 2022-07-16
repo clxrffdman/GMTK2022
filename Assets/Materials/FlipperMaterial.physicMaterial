@@ -8,7 +8,7 @@ PhysicMaterial:
   m_PrefabAsset: {fileID: 0}
   m_Name: FlipperMaterial
   dynamicFriction: 1
-  staticFriction: 1
-  bounciness: 1
+  staticFriction: 0
+  bounciness: 0.7
   frictionCombine: 3
-  bounceCombine: 3
+  bounceCombine: 1

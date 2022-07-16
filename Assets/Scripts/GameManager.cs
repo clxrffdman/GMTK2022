@@ -10,8 +10,14 @@ public class GameManager : MonoBehaviour
     public GameObject nextPseudoball;
     public int ballAmount;
     public PinballController currentPinball;
-    public float totalPoints;
+    public int totalPoints;
     public TextMeshProUGUI pointText;
+    [Header("Launch")]
+    public bool isLaunching;
+    public float launchCharge;
+    public float ballChargeRate;
+    public float baseLaunchMultiplier;
+    public float maxCharge;
 
 
     private void Awake()
@@ -36,6 +42,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         UpdateUIText();
+        LaunchBall();
     }
 
     void UpdateUIText()
@@ -69,6 +76,25 @@ public class GameManager : MonoBehaviour
         }
         
     }
+
+    public void LaunchBall()
+    {
+        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.Space))
+        {
+            if(launchCharge < maxCharge)
+            {
+                launchCharge += Time.deltaTime * ballChargeRate;
+            }
+        }
+        else
+        {
+            currentPinball.GetComponent<PinballMovement>().rb.AddForce(0,0,baseLaunchMultiplier * launchCharge,ForceMode.Impulse);
+            launchCharge = 0;
+        }
+        
+    }
+
+
 
     public void Defeat()
     {

@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class PinballController : MonoBehaviour
 {
-    public float currentPoints;
+    public static PinballController Instance;
+    public int currentPoints;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -18,12 +23,12 @@ public class PinballController : MonoBehaviour
         
     }
 
-    public void IncrementPoints(float offset)
+    public void IncrementPoints(int offset)
     {
         currentPoints += offset;
     }
 
-    public void MultiplyPoints(float multiplier) {
+    public void MultiplyPoints(int multiplier) {
         currentPoints *= multiplier;
     }
 }

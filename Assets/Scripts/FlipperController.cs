@@ -11,6 +11,7 @@ public class FlipperController : MonoBehaviour
     private JointSpring leftSpring;
     private JointSpring rightSpring;
     public float springAmt;
+    public float dampValue;
 
     // Start is called before the first frame update
     void Start()
@@ -18,9 +19,9 @@ public class FlipperController : MonoBehaviour
         leftSpring = new JointSpring();
         rightSpring = new JointSpring();
         leftSpring.spring = springAmt;
-        leftSpring.damper = 150f;
+        leftSpring.damper = dampValue;
         rightSpring.spring = springAmt;
-        rightSpring.damper = 150f;
+        rightSpring.damper = dampValue;
     }
 
     // Update is called once per frame
@@ -29,7 +30,7 @@ public class FlipperController : MonoBehaviour
         
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            leftSpring.targetPosition = -60;
+            leftSpring.targetPosition = -80;
             //_leftFlipper.localEulerAngles += new Vector3(0, 0, 2f);
         }
         else
@@ -39,7 +40,7 @@ public class FlipperController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            rightSpring.targetPosition = 60;
+            rightSpring.targetPosition = 80;
             //_leftFlipper.localEulerAngles += new Vector3(0, 0, 2f);
         }
         else
