@@ -10,15 +10,16 @@ public class FlipperController : MonoBehaviour
     [SerializeField] private HingeJoint _rightJoint;
     private JointSpring leftSpring;
     private JointSpring rightSpring;
+    public float springAmt;
 
     // Start is called before the first frame update
     void Start()
     {
         leftSpring = new JointSpring();
         rightSpring = new JointSpring();
-        leftSpring.spring = 10000f;
+        leftSpring.spring = springAmt;
         leftSpring.damper = 150f;
-        rightSpring.spring = 10000f;
+        rightSpring.spring = springAmt;
         rightSpring.damper = 150f;
     }
 
