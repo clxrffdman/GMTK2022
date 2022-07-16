@@ -24,7 +24,7 @@ public class PlayerHealth : Health
     public override void Death()
     {
         Debug.Log("test");
-        ballsLeft--;
+        changeBalls(-1);
         BallsUI();
         if(ballsLeft <= 0)
             GameOver();
@@ -34,6 +34,14 @@ public class PlayerHealth : Health
             //some animation ig
             setBar();
         }
+    }
+    public void changeBalls(int amount)
+    {
+        int added = ballsLeft+amount;
+        if(added < balls.Length)
+            ballsLeft = added;
+        else
+            ballsLeft = balls.Length;
     }
     public void BallsUI()
     {
