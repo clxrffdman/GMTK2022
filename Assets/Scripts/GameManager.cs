@@ -13,11 +13,13 @@ public class GameManager : MonoBehaviour
     public int totalPoints;
     public TextMeshProUGUI pointText;
     [Header("Launch")]
+    public RectTransform chargeBar;
     public bool isLaunching;
     public float launchCharge;
     public float ballChargeRate;
     public float baseLaunchMultiplier;
     public float maxCharge;
+    public ExitZone exitZone;
 
 
     private void Awake()
@@ -81,6 +83,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.Space))
         {
+            exitZone.ResetEffectWall();
             if(launchCharge < maxCharge)
             {
                 launchCharge += Time.deltaTime * ballChargeRate;
@@ -91,6 +94,7 @@ public class GameManager : MonoBehaviour
             currentPinball.GetComponent<PinballMovement>().rb.AddForce(0,0,baseLaunchMultiplier * launchCharge,ForceMode.Impulse);
             launchCharge = 0;
         }
+        chargeBar.transform.localScale = new Vector3(chargeBar.transform.localScale.x, 1 * (launchCharge/maxCharge), chargeBar.transform.localScale.z);
         
     }
 
