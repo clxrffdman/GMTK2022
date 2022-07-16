@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Combat : MonoBehaviour
 {
-    public float damageModifier;
+    public float scoreModifier;
     public Health boss;
     public PlayerHealth player;
+    
     private float damage;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -26,8 +27,21 @@ public class Combat : MonoBehaviour
     public void Attack(int roll, int score)
     {
         Debug.Log("a");
-        damage = damageModifier*score*roll;
+
+
+        float rollMulti = 1;
+        if(roll > 2)
+        {
+            rollMulti = 1.3f;
+        }
+        if (roll > 4)
+        {
+            rollMulti = 1.6f;
+        }
+
+        damage = (scoreModifier * score) * rollMulti;
         boss.changeHealth(-damage);
+        
     }
     public void Defense(int roll, int score)
     {

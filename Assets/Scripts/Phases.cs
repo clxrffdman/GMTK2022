@@ -31,13 +31,14 @@ public class Phases : MonoBehaviour
     {
         while(true)
         {
-            //rolldicefunctionhere
+            GameManager.Instance.RollCurrentDice();
             timeLeft = phaseTime;
             timergo = true;
             yield return new WaitForSeconds(phaseTime);
             timergo = false;
             //score = actualScore, roll = rolled, < implement later with these taking from gamemanager
-            whatdo[currentState](1, 2);//placeholder for now
+            whatdo[currentState](GameManager.Instance.currentRoll, PinballController.Instance.currentPoints);//placeholder for now
+            PinballController.Instance.currentPoints = 0;
             //for animations?
             yield return new WaitForSeconds(buffer);
             currentState++;

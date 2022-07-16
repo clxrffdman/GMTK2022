@@ -7,11 +7,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    [Header("Pinball Objects/Stats")]
     public GameObject nextPseudoball;
     public int ballAmount;
     public PinballController currentPinball;
     public int totalPoints;
     public TextMeshProUGUI pointText;
+    public GameObject masterTableObj;
     [Header("Launch")]
     public RectTransform chargeBar;
     public bool isLaunching;
@@ -20,6 +22,11 @@ public class GameManager : MonoBehaviour
     public float baseLaunchMultiplier;
     public float maxCharge;
     public ExitZone exitZone;
+    [Header("Dice")]
+    public int currentDiceIndex;
+    public int currentRoll;
+    public int previousRoll;
+    public TextMeshProUGUI diceRollText;
 
 
     private void Awake()
@@ -45,15 +52,51 @@ public class GameManager : MonoBehaviour
     {
         UpdateUIText();
         LaunchBall();
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            //StopCoroutine(ShakeTable());
+            //StartCoroutine(ShakeTable());
+        }
     }
 
     void UpdateUIText()
     {
         pointText.text = currentPinball.currentPoints + "";
+        diceRollText.text = currentRoll + "";
     }
 
     public void DoAttack()
     {
+
+    }
+
+    public int RollCurrentDice()
+    {
+        previousRoll = currentRoll;
+        currentRoll = Random.Range(1, currentDiceIndex + 1);
+        return currentRoll;
+    }
+
+    public IEnumerator ShakeTable()
+    {
+        Vector3 ogPos = masterTableObj.transform.position;
+        LeanTween.value(gameObject, 0f, 1f, 0.1f).setOnUpdate((float val) => {
+            masterTableObj.transform.position = ogPos + new Vector3(val, 0, 0);
+        });
+        yield return new WaitForSeconds(0.1f);
+        LeanTween.value(gameObject, 0f, 1f, 0.1f).setOnUpdate((float val) => {
+            masterTableObj.transform.position = ogPos + new Vector3(-val, 0, 0);
+        });
+        yield return new WaitForSeconds(0.1f);
+        LeanTween.value(gameObject, 0f, 1f, 0.1f).setOnUpdate((float val) => {
+            masterTableObj.transform.position = ogPos + new Vector3(val, 0, 0);
+        });
+        yield return new WaitForSeconds(0.1f);
+        LeanTween.value(gameObject, 0f, 1f, 0.1f).setOnUpdate((float val) => {
+            masterTableObj.transform.position = ogPos + new Vector3(-val, 0, 0);
+        });
+        yield return new WaitForSeconds(0.1f);
+        masterTableObj.transform.position = ogPos;
 
     }
 
