@@ -135,7 +135,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< Updated upstream
 =======
 --- !u!64 &37922071
 MeshCollider:
@@ -157,7 +156,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1662855411519815725}
   m_PrefabAsset: {fileID: 0}
->>>>>>> Stashed changes
 --- !u!114 &144106928 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 688278417529859197, guid: 71879f45ae37e074eac7860b619aa9cb,
@@ -697,8 +695,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< Updated upstream
-=======
 --- !u!1 &565546990
 GameObject:
   m_ObjectHideFlags: 0
@@ -1452,8 +1448,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
-<<<<<<< Updated upstream
-=======
 --- !u!1001 &758374860
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4099,8 +4093,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
-<<<<<<< Updated upstream
-=======
 --- !u!64 &1884451382
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4534,8 +4526,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 806791659}
     m_Modifications:
-<<<<<<< Updated upstream
-=======
     - target: {fileID: 1662855410634672837, guid: 7523b870bf8f5bc4797b2df6166e5600,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4662,8 +4652,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 261933034}
-<<<<<<< Updated upstream
-=======
     - target: {fileID: 1662855411367593661, guid: 7523b870bf8f5bc4797b2df6166e5600,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -4830,8 +4818,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 756134937}
-<<<<<<< Updated upstream
-=======
     - target: {fileID: 1662855411878617628, guid: 7523b870bf8f5bc4797b2df6166e5600,
         type: 3}
       propertyPath: m_IsActive
@@ -4897,7 +4883,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
->>>>>>> Stashed changes
     - target: {fileID: 1662855412325130817, guid: 7523b870bf8f5bc4797b2df6166e5600,
         type: 3}
       propertyPath: m_Mesh
@@ -4918,8 +4903,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1365988022}
-<<<<<<< Updated upstream
-=======
     - target: {fileID: 1662855412325130845, guid: 7523b870bf8f5bc4797b2df6166e5600,
         type: 3}
       propertyPath: m_Anchor.x
@@ -4975,7 +4958,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
->>>>>>> Stashed changes
     - target: {fileID: 1662855412437374053, guid: 7523b870bf8f5bc4797b2df6166e5600,
         type: 3}
       propertyPath: m_Mesh

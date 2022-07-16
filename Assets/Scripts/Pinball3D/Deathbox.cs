@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Deathbox : MonoBehaviour
 {
+
+    public Transform ballStartPosition;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +23,8 @@ public class Deathbox : MonoBehaviour
         if(other.gameObject.name == "Pinball")
         {
             GameManager.Instance.ResetBall();
-            other.transform.localPosition = new Vector3(11.02f, -22, -1f);
+            other.transform.position = ballStartPosition.position;
+            other.GetComponent<PinballMovement>().rb.velocity = Vector3.zero;
         }
     }
 }
