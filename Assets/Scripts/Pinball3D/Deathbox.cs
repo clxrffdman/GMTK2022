@@ -20,6 +20,7 @@ public class Deathbox : MonoBehaviour
     {
         if(other.gameObject.name == "Pinball")
         {
+            GameManager.Instance.ResetBall();
             other.transform.localPosition = new Vector3(11.02f, -22, -1f);
         }
     }

@@ -16,16 +16,14 @@ public class PlayerHealth : Health
     }
 
     // Update is called once per frame
-    new void Update()
+    /*void Update()
     {
-        base.Update();
-        //some nonsense where if you collide with the bottom -> Death(); will edit later when implementing death box
-    }
+        
+    }*/
     public override void Death()
     {
-        Debug.Log("test");
+        //Debug.Log("test");
         changeBalls(-1);
-        BallsUI();
         if(ballsLeft <= 0)
             GameOver();
         if(health <= 0)
@@ -42,6 +40,7 @@ public class PlayerHealth : Health
             ballsLeft = added;
         else
             ballsLeft = balls.Length;
+        BallsUI();
     }
     public void BallsUI()
     {

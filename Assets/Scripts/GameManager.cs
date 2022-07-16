@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Pinball Objects/Stats")]
     public GameObject nextPseudoball;
-    public int ballAmount;
+    public PlayerHealth phealth;
     public PinballController currentPinball;
     public int totalPoints;
     public TextMeshProUGUI pointText;
@@ -104,9 +104,9 @@ public class GameManager : MonoBehaviour
 
     public void ResetBall()
     {
-        if(ballAmount > 0)
+        if(phealth.alive)
         {
-            ballAmount--;
+            phealth.changeBalls(-1);
             if (nextPseudoball != null)
             {
                 Destroy(nextPseudoball);
