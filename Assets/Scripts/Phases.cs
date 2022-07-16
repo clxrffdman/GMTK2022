@@ -38,6 +38,7 @@ public class Phases : MonoBehaviour
             timergo = true;
             yield return new WaitForSeconds(phaseTime);
             timergo = false;
+            //score = actualScore, roll = rolled, < implement later with these taking from gamemanager
             whatdo[currentState](GameManager.Instance.currentRoll, PinballController.Instance.currentPoints);//placeholder for now
             PinballController.Instance.currentPoints = 0;
             //for animations?

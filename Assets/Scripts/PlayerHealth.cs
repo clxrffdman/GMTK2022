@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 public class PlayerHealth : Health
 {
-    public int ballsLeft;
-    [SerializeField] public Image[] balls;
+    private int ballsLeft;
+    [SerializeField] private Image[] balls;
     // Start is called before the first frame update
     new void Start()
     {
         base.Start();
+        ballsLeft = balls.Length;
         BallsUI();
     }
 
