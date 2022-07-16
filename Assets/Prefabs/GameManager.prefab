@@ -184,5 +184,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8e57be99da410e449aed21a7d1861b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bossHealth: {fileID: 0}
+  _bossHealth: {fileID: 8613795580928232714}
   spawnableObstacles: []
