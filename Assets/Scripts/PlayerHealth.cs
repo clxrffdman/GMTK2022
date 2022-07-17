@@ -11,6 +11,7 @@ public class PlayerHealth : Health
     // Start is called before the first frame update
     new void Start()
     {
+        ballsLeft = maxBalls;
         base.Start();
         BallsUI();
     }

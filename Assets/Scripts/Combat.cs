@@ -137,7 +137,7 @@ public class Combat : MonoBehaviour
         if(vampire)
             vampire = false;
         //Debug.Log("u");
-        int current = 4;
+        int current = roll;
         int rn;
         int previous = GameManager.Instance.previousRoll;
         if(current == 1)
