@@ -41,12 +41,19 @@ public class FlipperController : MonoBehaviour
         if (Input.GetKey(KeyCode.RightArrow))
         {
             rightSpring.targetPosition = 50;
+            
             //_leftFlipper.localEulerAngles += new Vector3(0, 0, 2f);
         }
         else
         {
             rightSpring.targetPosition = 0;
         }
+
+        if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            AudioManager.Instance.PlayBoardSFX(1);
+        }
+
         _leftJoint.spring = leftSpring;
         _rightJoint.spring = rightSpring;
     }
