@@ -72,6 +72,8 @@ public class PlayerHealth : Health
     public void GameOver()
     {
         alive = false;
+        anim.SetBool("happy", false);
+
         //idk yet
     }
 }

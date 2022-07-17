@@ -9,6 +9,7 @@ public class Health : MonoBehaviour
     public float maxHealth;
     public float health;
     public Slider bar;
+    public Animator anim;
     // Start is called before the first frame update
     public virtual void Start()
     {
@@ -47,5 +48,6 @@ public class Health : MonoBehaviour
     public virtual void Death()
     {
         alive = false;
+        anim.SetBool("happy", false);
     }
 }
