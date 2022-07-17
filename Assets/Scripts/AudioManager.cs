@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class AudioManager : MonoBehaviour
     public List<AudioClip> boardSFX;
     public List<AudioClip> uiSFX;
     public List<AudioClip> fightSFX;
+
+    public AudioMixer mixer;
 
     // Start is called before the first frame update
     void Awake()
@@ -98,5 +101,37 @@ public class AudioManager : MonoBehaviour
         sound.GetComponent<SoundSample>().SpawnSound(fightSFX[input], 0, 1);
         return (GameObject)sound;
     }
+
+    public void SetSFXVolume(float input)
+    {
+        mixer.SetFloat("sfxVolume", input);
+    }
+
+    public void SetMusicVolume(float input)
+    {
+        mixer.SetFloat("musicVolume", input);
+    }
+
+    /*
+     private void Start()
+    {
+        mixer = Resources.Load("MainMixer") as AudioMixer;
+        if (index == 0)
+        {
+            float value;
+            bool result = mixer.GetFloat("musicVolume", out value);
+            GetComponent<Slider>().value = value;
+        }
+        else
+        {
+            float value;
+            bool result = mixer.GetFloat("fxVolume", out value);
+            GetComponent<Slider>().value = value;
+        }
+    } 
+     * */
+
+
+
 
 }
