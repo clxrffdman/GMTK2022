@@ -8,6 +8,7 @@ public class FlipperController : MonoBehaviour
     [SerializeField] private Transform _rightFlipper;
     [SerializeField] private HingeJoint _leftJoint;
     [SerializeField] private HingeJoint _rightJoint;
+    [SerializeField] private HingeJoint _rightJoint2;
     private JointSpring leftSpring;
     private JointSpring rightSpring;
     public float angle;
@@ -57,5 +58,6 @@ public class FlipperController : MonoBehaviour
 
         _leftJoint.spring = leftSpring;
         _rightJoint.spring = rightSpring;
+        _rightJoint2.spring = rightSpring;
     }
 }
