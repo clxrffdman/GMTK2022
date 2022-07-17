@@ -78,9 +78,9 @@ public class GameManager : MonoBehaviour
 
     public int RollCurrentDice()
     {
-        var sound = Instantiate(SFXInstance,transform.position,Quaternion.identity);
-        sound.transform.parent = soundParent;
-        sound.GetComponent<SoundSample>().SpawnSound(diceRollSFXList[Random.Range(0, diceRollSFXList.Count)], 0, 1);
+        var sound = Instantiate(SFXInstance, transform.position, Quaternion.identity);
+        sound.transform.parent = GameManager.Instance.soundParent;
+        sound.GetComponent<SoundSample>().SpawnSound(diceRollSFXList[Random.Range(0,2)], 0, 1);
 
         previousRoll = currentRoll;
         currentRoll = Random.Range(1, currentDiceIndex + 1);

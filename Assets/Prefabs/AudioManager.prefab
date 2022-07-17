@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8725120129513326798
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8725120129513326797}
+  - component: {fileID: 8725120129513326796}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8725120129513326797
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8725120129513326798}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -169.90604, y: 0.000022888184, z: 0.0020275116}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8725120129513326796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8725120129513326798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7bbef830a307454794438e18ceeeec9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SFXInstance: {fileID: 4084887617753403306, guid: 0a25c7ea4da1292478b3d886c6b3140d,
+    type: 3}
+  protagVoiceLines:
+  - {fileID: 8300000, guid: c5a1d5e303b27ea48ad3e8622c6fb52a, type: 3}
+  - {fileID: 8300000, guid: 75b049b1227379e4480d32e9592667f4, type: 3}
+  - {fileID: 8300000, guid: ae71a2bad24a8704abd988e4edacf3d7, type: 3}
+  - {fileID: 8300000, guid: 8ffeb457335620240888a3713d90778d, type: 3}
+  - {fileID: 8300000, guid: 3b1c271b863628744a9e8a2d935bde4f, type: 3}
+  - {fileID: 8300000, guid: e83dbee168a6fef458a73e27d58eaaf0, type: 3}
+  - {fileID: 8300000, guid: 18d4d68ce26911c469c0f03769cef5cc, type: 3}
+  - {fileID: 8300000, guid: a6f3096a5d1b77649ae818c1b66020f1, type: 3}
+  - {fileID: 8300000, guid: 163d93dd3675f54499ef03017bcc742f, type: 3}
+  - {fileID: 8300000, guid: 9cade7c44a3bd6d4bb01aab98d3d794a, type: 3}
+  - {fileID: 8300000, guid: 9d71076a22c8dfc4c8781190ce00e9c6, type: 3}
+  - {fileID: 8300000, guid: cc79fe35d1a8020448ad99cec42168f1, type: 3}
+  enemyVoiceLines: []
+  generalSFX: []
+  uiSFX: []
