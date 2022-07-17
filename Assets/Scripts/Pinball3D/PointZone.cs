@@ -6,18 +6,18 @@ public class PointZone : MonoBehaviour
 {
 
     public int basePointValue;
-    private int currentPointValue;
+    public float currentPointValue;
     // Start is called before the first frame update
     void Start()
     {
         currentPointValue = basePointValue;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public virtual void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
         {
-            PinballController.Instance.IncrementPoints(currentPointValue);
+            PinballController.Instance.IncrementPoints((int)currentPointValue);
         }
     }
 
@@ -25,7 +25,7 @@ public class PointZone : MonoBehaviour
     {
         if (collision.transform.tag == "Player")
         {
-            PinballController.Instance.IncrementPoints(currentPointValue);
+            PinballController.Instance.IncrementPoints((int)currentPointValue);
         }
     }
 }
