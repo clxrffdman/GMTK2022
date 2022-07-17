@@ -6,6 +6,7 @@ public class AccelerationZone : MonoBehaviour
 {
 
     public float speedMultiplier;
+    public bool up;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,10 +23,21 @@ public class AccelerationZone : MonoBehaviour
     {
         if(other.transform.tag == "Player")
         {
-            if(other.transform.GetComponent<PinballMovement>().rb.velocity.z > 0)
+            if (up)
             {
-                other.transform.GetComponent<PinballMovement>().ModifyBallVelocity(speedMultiplier);
+                if (other.transform.GetComponent<PinballMovement>().rb.velocity.z > 0.05f)
+                {
+                    other.transform.GetComponent<PinballMovement>().ModifyBallVelocity(speedMultiplier);
+                }
             }
+            else
+            {
+                if (other.transform.GetComponent<PinballMovement>().rb.velocity.z < 0.05f)
+                {
+                    other.transform.GetComponent<PinballMovement>().ModifyBallVelocity(speedMultiplier);
+                }
+            }
+            
             
         }
     }
