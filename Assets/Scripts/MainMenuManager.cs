@@ -50,7 +50,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void CloseGame()
     {
-
+        Application.Quit();
     }
 
 

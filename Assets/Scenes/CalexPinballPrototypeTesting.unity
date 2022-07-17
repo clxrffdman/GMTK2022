@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5321,7 +5321,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.136
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -8163,6 +8163,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 688278416963776622, guid: 71879f45ae37e074eac7860b619aa9cb,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 106
+      objectReference: {fileID: 0}
+    - target: {fileID: 688278416963776622, guid: 71879f45ae37e074eac7860b619aa9cb,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 222
+      objectReference: {fileID: 0}
     - target: {fileID: 2149492885981570509, guid: 71879f45ae37e074eac7860b619aa9cb,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -9870,7 +9880,7 @@ PrefabInstance:
     - target: {fileID: 8613795580928232713, guid: 81e050afc1db79046ab405812ad6d037,
         type: 3}
       propertyPath: ballsLeft
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8613795580928232713, guid: 81e050afc1db79046ab405812ad6d037,
         type: 3}
@@ -10061,6 +10071,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8725120129513326796, guid: eb3c4dc58856c5f4ca440e570a7f54c6,
+        type: 3}
+      propertyPath: generalSFX.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8725120129513326796, guid: eb3c4dc58856c5f4ca440e570a7f54c6,
+        type: 3}
+      propertyPath: generalSFX.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: f5b5f111804ed834e9e7f7388aed62ed, type: 3}
     - target: {fileID: 8725120129513326797, guid: eb3c4dc58856c5f4ca440e570a7f54c6,
         type: 3}
       propertyPath: m_RootOrder
