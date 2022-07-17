@@ -51,5 +51,7 @@ public class Health : MonoBehaviour
     {
         alive = false;
         anim.SetBool("happy", false);
+        GameManager.Instance.Victory();
+
     }
 }
