@@ -37,12 +37,13 @@ public class Phases : MonoBehaviour
     }
     IEnumerator PhaseStuff()
     {
-        //int rng = UnityEngine.Random(0, 3);
+        int rng = UnityEngine.Random.Range(0, 3);
+        AudioManager.Instance.PlayEnemyLine(rng);
         while(true)
         {
-            if(todo.poisons.Count != 0)
-                todo.statuses[4].color = new Color(todo.statuses[4].color.r, todo.statuses[4].color.g, todo.statuses[4].color.b, 255);
             if(todo.bpoisons.Count != 0)
+                todo.statuses[4].color = new Color(todo.statuses[4].color.r, todo.statuses[4].color.g, todo.statuses[4].color.b, 255);
+            if(todo.poisons.Count != 0)
                 todo.bstatuses[4].color = new Color(todo.bstatuses[4].color.r, todo.bstatuses[4].color.g, todo.bstatuses[4].color.b, 255);
             if((todo.rest || todo.skipped) && currentState == 0)
             {
@@ -99,7 +100,7 @@ public class Phases : MonoBehaviour
                 }
                 if(todo.poisons.Count == 0)
                 {
-                    todo.statuses[4].color = new Color(todo.statuses[4].color.r, todo.statuses[4].color.g, todo.statuses[4].color.b, 0f);
+                    todo.bstatuses[4].color = new Color(todo.bstatuses[4].color.r, todo.bstatuses[4].color.g, todo.bstatuses[4].color.b, 0f);
                 }
             }
             if(currentState != 1)
@@ -115,7 +116,7 @@ public class Phases : MonoBehaviour
                 }
                 if(todo.bpoisons.Count == 0)
                 {
-                    todo.bstatuses[4].color = new Color(todo.bstatuses[4].color.r, todo.bstatuses[4].color.g, todo.bstatuses[4].color.b, 0f);
+                    todo.statuses[4].color = new Color(todo.statuses[4].color.r, todo.statuses[4].color.g, todo.statuses[4].color.b, 0f);
                 }
             }
             PinballController.Instance.currentPoints = 0;
