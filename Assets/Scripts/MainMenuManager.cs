@@ -40,7 +40,12 @@ public class MainMenuManager : MonoBehaviour
 
     public void OpenCredits()
     {
+        creditsParent.SetActive(true);
+    }
 
+    public void CloseCredits()
+    {
+        creditsParent.SetActive(false);
     }
 
     public void CloseGame()
