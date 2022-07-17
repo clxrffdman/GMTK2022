@@ -39,6 +39,10 @@ public class Phases : MonoBehaviour
             {
                 phaseTime = 0;
             }
+            else if((todo.bskipped) && currentState == 1)
+            {
+                phaseTime = 0;
+            }
             else
             {
                 GameManager.Instance.RollCurrentDice();
@@ -52,6 +56,8 @@ public class Phases : MonoBehaviour
             yield return new WaitForSeconds(buffer);
             whatdo[currentState](GameManager.Instance.currentRoll, PinballController.Instance.currentPoints);
             //poison
+            if(currentState != 0)
+            {
             for(int i = todo.poisons.Count-1; i >= 0 ; i--)
             {
                 Debug.Log("poison");
@@ -60,6 +66,19 @@ public class Phases : MonoBehaviour
                 todo.poisons[i].phasesLeft--;
                 if(todo.poisons[i].phasesLeft == 0)
                     todo.poisons.Remove(todo.poisons[i]);
+            }
+            }
+            if(currentState != 1)
+            {
+            for(int i = todo.bpoisons.Count-1; i >= 0 ; i--)
+            {
+                Debug.Log("bpoison");
+                Debug.Log(todo.bpoisons[i].damage);
+                todo.DealDamagetoPlayer(todo.bpoisons[i].damage);
+                todo.bpoisons[i].phasesLeft--;
+                if(todo.bpoisons[i].phasesLeft == 0)
+                    todo.bpoisons.Remove(todo.bpoisons[i]);
+            }
             }
             PinballController.Instance.currentPoints = 0;
             //for animations?

@@ -52,9 +52,8 @@ public class PlayerHealth : Health
             health = added;
         else
         {
-            health = added%maxHealth;
-            Debug.Log((int)(added/maxHealth));
-            changeBalls((int) (added/maxHealth));
+            health = maxHealth;
+            changeBalls(1);
         }
         setBar();
         if(health <= 0)
