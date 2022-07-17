@@ -27,7 +27,15 @@ public class MainMenuManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(1));
+
+        StartCoroutine(StartRoutine());
+    }
+
+    public IEnumerator StartRoutine()
+    {
+        AudioManager.Instance.PlayUISFX(0);
+        yield return new WaitForSeconds(0.3f);
+        SceneManager.LoadScene(1);
     }
 
     public void OpenCredits()

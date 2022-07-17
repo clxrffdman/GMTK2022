@@ -66,4 +66,5 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f58134cda1f6be04cb9e12832af0e212, type: 3}
   - {fileID: 8300000, guid: 7b5b44ab10ac5b543b5db6e78f986912, type: 3}
   - {fileID: 8300000, guid: ad97e1706ed505441b83e91a718254fc, type: 3}
-  uiSFX: []
+  uiSFX:
+  - {fileID: 8300000, guid: 9b03933374eea284cbe8ee01dc77b8bf, type: 3}

@@ -37,35 +37,51 @@ public class AudioManager : MonoBehaviour
     public GameObject PlayProtagLine(int input)
     {
         var sound = Instantiate(SFXInstance, transform.position, Quaternion.identity);
-        sound.transform.parent = GameManager.Instance.soundParent;
+        if (GameManager.Instance != null)
+        {
+            sound.transform.parent = GameManager.Instance.soundParent;
+        }
         sound.GetComponent<SoundSample>().SpawnSound(protagVoiceLines[input], 0, 1);
         return (GameObject)sound;
     }
     public GameObject PlayEnemyLine(int input)
     {
         var sound = Instantiate(SFXInstance, transform.position, Quaternion.identity);
-        sound.transform.parent = GameManager.Instance.soundParent;
+        if (GameManager.Instance != null)
+        {
+            sound.transform.parent = GameManager.Instance.soundParent;
+        }
         sound.GetComponent<SoundSample>().SpawnSound(enemyVoiceLines[input], 0, 1);
         return (GameObject)sound;
     }
     public GameObject PlayGeneralSFX(int input)
     {
         var sound = Instantiate(SFXInstance, transform.position, Quaternion.identity);
-        sound.transform.parent = GameManager.Instance.soundParent;
+        if (GameManager.Instance != null)
+        {
+            sound.transform.parent = GameManager.Instance.soundParent;
+        }
         sound.GetComponent<SoundSample>().SpawnSound(generalSFX[input], 0, 1);
         return (GameObject)sound;
     }
     public GameObject PlayBoardSFX(int input)
     {
         var sound = Instantiate(SFXInstance, transform.position, Quaternion.identity);
-        sound.transform.parent = GameManager.Instance.soundParent;
+        if (GameManager.Instance != null)
+        {
+            sound.transform.parent = GameManager.Instance.soundParent;
+        }
         sound.GetComponent<SoundSample>().SpawnSound(boardSFX[input], 0, 1);
         return (GameObject)sound;
     }
     public GameObject PlayUISFX(int input)
     {
         var sound = Instantiate(SFXInstance, transform.position, Quaternion.identity);
-        sound.transform.parent = GameManager.Instance.soundParent;
+        if(GameManager.Instance != null)
+        {
+            sound.transform.parent = GameManager.Instance.soundParent;
+        }
+        
         sound.GetComponent<SoundSample>().SpawnSound(uiSFX[input], 0, 1);
         return (GameObject)sound;
     }
