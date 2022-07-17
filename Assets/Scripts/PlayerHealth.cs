@@ -28,12 +28,9 @@ public class PlayerHealth : Health
         changeBalls(-1);
         if(ballsLeft <= 0)
             GameOver();
-        if(health <= 0)
-        {
             health = maxHealth;
             //some animation ig
             setBar();
-        }
     }
     public void changeBalls(int amount)
     {
