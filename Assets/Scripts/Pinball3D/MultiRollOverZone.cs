@@ -28,7 +28,7 @@ public class MultiRollOverZone : MonoBehaviour
         numActive++;
         if (numActive >= maxRollovers)
         {
-            ClearRollovers();
+            Invoke("ClearRollovers", 0.5f);
             numActive = 0;
         }
             
@@ -41,8 +41,11 @@ public class MultiRollOverZone : MonoBehaviour
         foreach (RollOverZone r in childRollOvers)
         {
             r.isActive = false;
+            r.parentLight.Play("idle");
         }
     }
+
+
 
 
 }

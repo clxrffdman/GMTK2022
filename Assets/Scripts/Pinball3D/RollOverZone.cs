@@ -9,6 +9,8 @@ public class RollOverZone : PointZone
     public MultiRollOverZone parent;
     public bool isActive;
 
+    public Animator parentLight;
+
     public override void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player" && !isActive)
@@ -25,6 +27,7 @@ public class RollOverZone : PointZone
                     PinballController.Instance.IncrementPoints((int)(currentPointValue));
                 }
                 parent.RolloverActivated();
+                parentLight.Play("activate");
                 
                 
                 isActive = true;
