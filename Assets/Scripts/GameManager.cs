@@ -53,6 +53,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         phealth = GetComponent<PlayerHealth>();
+        AudioSource ok = GetComponent<AudioSource>();
+        ok.volume = 0.136f;
     }
 
     // Update is called once per frame
@@ -195,6 +197,8 @@ public class GameManager : MonoBehaviour
     {
         int rng = UnityEngine.Random.Range(0, 3) + 3;
         AudioManager.Instance.PlayEnemyLine(rng);
+        AudioSource ok = GetComponent<AudioSource>();
+        ok.volume = 0f;
     }
 
     public void Victory()
@@ -202,5 +206,8 @@ public class GameManager : MonoBehaviour
             int rng = UnityEngine.Random.Range(0, 3) + 7;
                 AudioManager.Instance.PlayEnemyLine(rng);
 
+                
+        AudioSource ok = GetComponent<AudioSource>();
+        ok.volume = 0.14f;
     }
 }
