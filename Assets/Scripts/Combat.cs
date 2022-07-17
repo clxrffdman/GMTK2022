@@ -305,7 +305,7 @@ public class Combat : MonoBehaviour
         if(amount > GameManager.Instance.phealth.health)
         {
             GameManager.Instance.phealth.health = GameManager.Instance.phealth.maxHealth;
-            GameManager.Instance.phealth.changeBalls(-1);
+            GameManager.Instance.phealth.Death();
         }
         else
         {
