@@ -62,7 +62,7 @@ public class Phases : MonoBehaviour
             timergo = true;
             yield return new WaitForSeconds(phaseTime);
             timergo = false;
-            //anims?
+            //bossdamageanims
             whatdo[currentState](GameManager.Instance.currentRoll, PinballController.Instance.currentPoints);
             if(currentState == 0 && (!todo.rest && !todo.skipped))
             {
@@ -86,6 +86,7 @@ public class Phases : MonoBehaviour
                 todo.rest = false;
                 todo.statuses[5].color = new Color(todo.statuses[5].color.r, todo.statuses[5].color.g, todo.statuses[5].color.b, 0f);
                 }
+                //playeranims
             if(currentState == 1 && !todo.bskipped)
             {
                 pEffect.SetBool("attack", true);
@@ -97,6 +98,7 @@ public class Phases : MonoBehaviour
 
             }
             yield return new WaitForSeconds(buffer);
+            //reset both
             bEffect.SetInteger("type", 0);
             pEffect.SetBool("attack", false);
             //poison
