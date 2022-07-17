@@ -17,5 +17,6 @@ public class BallSpriteController : MonoBehaviour
     void Update()
     {
         transform.position = new Vector3(_hostBall.transform.position.x, _hostBall.transform.position.y + 0.5f, _hostBall.transform.position.z);
+
     }
 }
