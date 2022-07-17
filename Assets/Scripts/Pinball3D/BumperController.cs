@@ -11,7 +11,7 @@ public class BumperController : MonoBehaviour
 
     public virtual void OnCollisionEnter(Collision collision)
     {
-        if(collision.transform.tag == "Player")
+        if (collision.transform.tag == "Player")
         {
             collision.transform.GetComponent<PinballMovement>().rb.AddForce(collision.GetContact(0).normal * -bumpForceMultiplier, ForceMode.Impulse);
             AudioManager.Instance.PlayBoardSFX(0);

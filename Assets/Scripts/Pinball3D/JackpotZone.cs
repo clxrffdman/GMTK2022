@@ -15,7 +15,7 @@ public class JackpotZone : PointZone
         {
             PinballController.Instance.IncrementPoints((int)currentPointValue);
             currentPointValue = basePointValue;
-            AudioManager.Instance.PlayBoardSFX(7);
+            AudioManager.Instance.PlayBoardSFX(8);
         }
     }
 }
