@@ -378,7 +378,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh218066
+  m_Name: pb_Mesh268302
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1506,7 +1506,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh218402
+  m_Name: pb_Mesh-1639462
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4160,7 +4160,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh218162
+  m_Name: pb_Mesh-1639440
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4842,7 +4842,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1477538
+  m_Name: pb_Mesh268332
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6249,6 +6249,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 688278416699063398, guid: 71879f45ae37e074eac7860b619aa9cb,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 2048
+      objectReference: {fileID: 0}
+    - target: {fileID: 688278416699063398, guid: 71879f45ae37e074eac7860b619aa9cb,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 3203
+      objectReference: {fileID: 0}
+    - target: {fileID: 688278416699063398, guid: 71879f45ae37e074eac7860b619aa9cb,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.17807746
+      objectReference: {fileID: 0}
+    - target: {fileID: 688278416699063398, guid: 71879f45ae37e074eac7860b619aa9cb,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.17807746
+      objectReference: {fileID: 0}
+    - target: {fileID: 688278416699063398, guid: 71879f45ae37e074eac7860b619aa9cb,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.17807746
+      objectReference: {fileID: 0}
+    - target: {fileID: 688278416699063398, guid: 71879f45ae37e074eac7860b619aa9cb,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -207
+      objectReference: {fileID: 0}
     - target: {fileID: 688278416980098763, guid: 71879f45ae37e074eac7860b619aa9cb,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -6320,7 +6350,7 @@ PrefabInstance:
       objectReference: {fileID: 1128912392}
     - target: {fileID: 1156438696, guid: 7523b870bf8f5bc4797b2df6166e5600, type: 3}
       propertyPath: bumpForceMultiplier
-      value: 6
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1480824675, guid: 7523b870bf8f5bc4797b2df6166e5600, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6336,7 +6366,7 @@ PrefabInstance:
       objectReference: {fileID: 1128912392}
     - target: {fileID: 1480824677, guid: 7523b870bf8f5bc4797b2df6166e5600, type: 3}
       propertyPath: bumpForceMultiplier
-      value: 6
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1674359245, guid: 7523b870bf8f5bc4797b2df6166e5600, type: 3}
       propertyPath: ballStartPosition

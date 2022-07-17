@@ -12,7 +12,7 @@ public class WallBumper : BumperController
         if (collision.transform.tag == "Player")
         {
             //collision.transform.GetComponent<PinballMovement>().rb.AddForce(Vector3.Normalize(collision.GetContact(0).normal) * -bumpForceMultiplier, ForceMode.Impulse);
-            collision.transform.GetComponent<PinballMovement>().rb.AddForce((target.transform.position- this.transform.position).normalized * bumpForceMultiplier, ForceMode.Impulse); 
+            collision.transform.GetComponent<PinballMovement>().rb.velocity = ((target.transform.position- this.transform.position).normalized * bumpForceMultiplier); 
             AudioManager.Instance.PlayBoardSFX(0);
         }
     }
