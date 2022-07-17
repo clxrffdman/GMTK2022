@@ -54,7 +54,6 @@ public class Combat : MonoBehaviour
 
     [SerializeField] public Image[] bstatuses;
     public bool bskipped;
-
     // Start is called before the first frame update
     void Start()
     {

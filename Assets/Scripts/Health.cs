@@ -13,6 +13,7 @@ public class Health : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
+        anim.SetBool("happy", true);
         alive = true;
         bar.maxValue = maxHealth;
         health = maxHealth;

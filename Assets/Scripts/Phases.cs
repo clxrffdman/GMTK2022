@@ -17,6 +17,10 @@ public class Phases : MonoBehaviour
     private int currentState = 0;
     int stateIndex;
     public Dictionary <int, Action<int, int>> whatdo;
+    
+    [Header("anims")]
+    public Animator bEffect;
+    public Animator pEffect;
     // Start is called before the first frame updatea
     void Start()
     {
@@ -33,6 +37,7 @@ public class Phases : MonoBehaviour
     }
     IEnumerator PhaseStuff()
     {
+        //int rng = UnityEngine.Random(0, 3);
         while(true)
         {
             if(todo.poisons.Count != 0)
@@ -57,8 +62,29 @@ public class Phases : MonoBehaviour
             yield return new WaitForSeconds(phaseTime);
             timergo = false;
             //anims?
-            yield return new WaitForSeconds(buffer);
             whatdo[currentState](GameManager.Instance.currentRoll, PinballController.Instance.currentPoints);
+            if(currentState == 0 && (!todo.rest || !todo.skipped))
+            {
+                if(GameManager.Instance.currentRoll > 4)
+                {
+                    bEffect.SetInteger("type", 3);
+                }
+                else if(GameManager.Instance.currentRoll > 2)
+                {
+                    bEffect.SetInteger("type", 2);
+                }
+                else if(GameManager.Instance.currentRoll == 2)
+                {
+                    bEffect.SetInteger("type", 1);
+                }
+            }
+            if(currentState == 1 && !todo.bskipped)
+            {
+                pEffect.SetBool("attack", true);
+            }
+            yield return new WaitForSeconds(buffer);
+            bEffect.SetInteger("type", 0);
+            pEffect.SetBool("attack", false);
             //poison
             if(currentState != 0)
             {
