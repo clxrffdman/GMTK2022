@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class GameManager : MonoBehaviour
     public GameObject SFXInstance;
     public Transform soundParent;
     public GameObject currentPullSound;
+    public GameObject winScreen;
+    public GameObject loseScreen;
+    public bool isOver;
     [Header("Pinball Objects/Stats")]
     public GameObject nextPseudoball;
     public PlayerHealth phealth;
@@ -143,7 +147,7 @@ public class GameManager : MonoBehaviour
     {
         if (phealth.alive)
         {
-            phealth.changeBalls(-1);
+            phealth.Death();
             isLaunching = true;
             if (nextPseudoball != null)
             {
@@ -199,6 +203,8 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.PlayEnemyLine(rng);
         AudioSource ok = GetComponent<AudioSource>();
         ok.volume = 0f;
+        Time.timeScale = 0;
+        loseScreen.SetActive(true);
     }
 
     public void Victory()
@@ -209,5 +215,13 @@ public class GameManager : MonoBehaviour
                 
         AudioSource ok = GetComponent<AudioSource>();
         ok.volume = 0.14f;
+        Time.timeScale = 0;
+        winScreen.SetActive(true);
+    }
+
+    public void ToMainMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0);
     }
 }
