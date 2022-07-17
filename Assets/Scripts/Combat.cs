@@ -31,7 +31,7 @@ public class Combat : MonoBehaviour
     public int poisonLength;
     public float poisonDamageModifier;
     public float poisonDamagePointModifier;
-
+    //statuses 0 = chargingattack, 1 = nextisvamp, 2 = nextispois, 3 = increaseddamage, 4 = poisoned, 5 = nextisstunned, maybe a sleep for rest
     [SerializeField] public Image[] statuses;
     public bool skipped;
     public bool rest;
@@ -43,6 +43,7 @@ public class Combat : MonoBehaviour
     public bool moreDamage;
     public float moreBaseDamage;
     float damageModifier;
+    public float baseDamageModifier;
     public float damagePointModifier;
 
     public bool bpoisonAttack;
@@ -63,9 +64,13 @@ public class Combat : MonoBehaviour
         bskipped = false;
         vampire = false;
         charging = false;
-        for(int i = 0; i < 4; i++)
+        for(int i = 0; i < 6; i++)
+        {
             statuses[i].color = new Color(statuses[i].color.r, statuses[i].color.g, statuses[i].color.b, 0f);
+            bstatuses[i].color = new Color(bstatuses[i].color.r, bstatuses[i].color.g, bstatuses[i].color.b, 0f);
+        }
         scoreModifier = baseScoreModifier;
+        damageModifier = baseDamageModifier;
     }
 
     // Update is called once per frame
@@ -84,7 +89,7 @@ public class Combat : MonoBehaviour
         if(roll == 1f)
         {
             charging = true;
-            chargeModifier = ((float) Math.Log(score))*chargePointModifier;
+            chargeModifier = ((float) Math.Log(score+1))*chargePointModifier;
             rollMulti = 0f;
             statuses[0].color = new Color(statuses[0].color.r, statuses[0].color.g, statuses[0].color.b, 255);
         }
@@ -98,13 +103,13 @@ public class Combat : MonoBehaviour
         }
         if (roll == 6f)
         {
-            bskipped = true;
+            SkipBoss();
         }
         damage = (scoreModifier * score) * rollMulti;
         if(skipped || rest)
         {
             damage = 0;
-            skipped = false;
+            removeSkipPlayer();
             rest = false;
         }
         Debug.Log(damage);
@@ -142,13 +147,13 @@ public class Combat : MonoBehaviour
                 skipped = true;
             else 
             {
-                scoreModifier = ((float) Math.Log(score))*scoreModifier*neuterDamageModifier;
+                scoreModifier = ((float) Math.Log(score+1))*scoreModifier*neuterDamageModifier;
             }
         }
         else if(current == 2)
         {
             moreDamage = true;
-            scoreModifier = ((float) Math.Log(score))*scoreModifier*neuterDamageModifier*1.2f;
+            scoreModifier = ((float) Math.Log(score+1))*scoreModifier*neuterDamageModifier*1.2f;
         }
         else if(current == 3)
         {
@@ -184,7 +189,7 @@ public class Combat : MonoBehaviour
             {
                 VampActivate(score);
             }
-            scoreModifier = scoreModifier*((float) Math.Log(score))*bonusDamagePointModifier;
+            scoreModifier = scoreModifier*((float) Math.Log(score+1))*bonusDamagePointModifier;
             statuses[3].color = new Color(statuses[3].color.r, statuses[3].color.g, statuses[3].color.b, 255);
             /*if(previous == 6 && current == 6)
                 scoreModifier*=2;
@@ -194,7 +199,7 @@ public class Combat : MonoBehaviour
     public void PoisonActivate(int score)
     {
                 poisonAttack = true;
-                poisonDamageModifier = ((float) Math.Log(score))*poisonDamagePointModifier;
+                poisonDamageModifier = ((float) Math.Log(score+1))*poisonDamagePointModifier;
                 statuses[2].color = new Color(statuses[2].color.r, statuses[2].color.g, statuses[2].color.b, 255);
     }
     public void VampActivate(int score)
@@ -203,6 +208,28 @@ public class Combat : MonoBehaviour
                 vampireHealModifier = score*vampireHealPointModifier;
                 statuses[1].color = new Color(statuses[1].color.r, statuses[1].color.g, statuses[1].color.b, 255);
     }
+    public void SkipPlayer()
+    {
+        skipped = true;
+        statuses[5].color = new Color(statuses[5].color.r, statuses[5].color.g, statuses[5].color.b, 255);
+    }
+    public void removeSkipPlayer()
+    {
+        skipped = false;
+        statuses[5].color = new Color(statuses[5].color.r, statuses[5].color.g, statuses[5].color.b, 0f);
+    }
+    
+    public void SkipBoss()
+    {
+        bskipped = true;
+        bstatuses[5].color = new Color(bstatuses[5].color.r, bstatuses[5].color.g, bstatuses[5].color.b, 255);
+    }
+    public void removeSkipBoss()
+    {
+        bskipped = false;
+        bstatuses[5].color = new Color(bstatuses[5].color.r, bstatuses[5].color.g, bstatuses[5].color.b, 0f);
+    }
+
     public void DealDamagetoBoss(float amount)
     {
         if(charging)
@@ -221,15 +248,18 @@ public class Combat : MonoBehaviour
     }
     void bAttack(int roll, int score)
     {
-        damageModifier = ((float) Math.Log(score))*damagePointModifier;
+        Debug.Log(damageModifier);
+        damageModifier = ((float) Math.Log(score+1))*damagePointModifier;
+        Debug.Log("L");
+        Debug.Log(damageModifier);
         float calc;
-        if(moreDamage)
+        if(!moreDamage)
+            calc = baseDamage - damageModifier;
+        else
         {
             moreDamage = false;
             calc = moreBaseDamage - damageModifier;
         }
-        else 
-            calc = baseDamage - damageModifier;
         if(calc < minDamage)
             calc = minDamage;
         if(roll == 2f)
@@ -244,7 +274,11 @@ public class Combat : MonoBehaviour
             bpoisons.Add(new Poison(bpoisonDamageModifier*calc, bpoisonLength));
             bstatuses[2].color = new Color(bstatuses[2].color.r, bstatuses[2].color.g, bstatuses[2].color.b, 0f);
         }
+        Debug.Log("huh");
+        Debug.Log(calc);
+        Debug.Log("hey");
         DealDamagetoPlayer(calc);
+        damageModifier = baseDamageModifier;
     }
     public void DealDamagetoPlayer(float amount)
     {
@@ -255,7 +289,7 @@ public class Combat : MonoBehaviour
         }
         else
         {
-            GameManager.Instance.phealth.health = GameManager.Instance.phealth.health - amount;
+            GameManager.Instance.phealth.changeHealth(-amount);
         }
     }
 }
