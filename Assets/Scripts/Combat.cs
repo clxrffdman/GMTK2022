@@ -109,13 +109,17 @@ public class Combat : MonoBehaviour
             }
             damage = (scoreModifier * score) * rollMulti;
             Debug.Log(damage);
-            if(damage != 0)
+            if(!charging)
             {
                 if(poisonAttack)
                 { 
+                    
                     poisonAttack = false;
+                    if(damage > 0f)
+                    {
                     poisons.Add(new Poison(((float) Math.Log(score+1))*poisonDamagePointModifier*damage, poisonLength));
                     statuses[2].color = new Color(statuses[2].color.r, statuses[2].color.g, statuses[2].color.b, 0f);
+                    }
                 }
                 scoreModifier = baseScoreModifier;
                 statuses[3].color = new Color(statuses[3].color.r, statuses[3].color.g, statuses[3].color.b, 0f);
