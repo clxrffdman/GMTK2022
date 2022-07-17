@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerHealth : Health
 {
     public int ballsLeft;
+    public int maxBalls;
     [SerializeField] public Image[] balls;
     // Start is called before the first frame update
     new void Start()
@@ -34,16 +35,34 @@ public class PlayerHealth : Health
     }
     public void changeBalls(int amount)
     {
+        Debug.Log("ok");
+        Debug.Log(amount);
         int added = ballsLeft+amount;
-        if(added < balls.Length)
+        if(added < maxBalls)
             ballsLeft = added;
         else
-            ballsLeft = balls.Length;
+            ballsLeft = maxBalls;
         BallsUI();
+    }
+    public void Heal(float amount)
+    {
+        Debug.Log(amount);
+        float added = health+amount;
+        if(added <= maxHealth)
+            health = added;
+        else
+        {
+            health = added%maxHealth;
+            Debug.Log((int)(added/maxHealth));
+            changeBalls((int) (added/maxHealth));
+        }
+        setBar();
+        if(health <= 0)
+            this.Death();
     }
     public void BallsUI()
     {
-        for(int i = 0; i < balls.Length; i++)
+        for(int i = 0; i < maxBalls; i++)
         {
             if(i < ballsLeft)
                 balls[i].color = new Color(balls[i].color.r, balls[i].color.g, balls[i].color.b, 255);

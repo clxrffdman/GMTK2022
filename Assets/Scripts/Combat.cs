@@ -1,22 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System;
 
 public class Combat : MonoBehaviour
 {
     public float baseScoreModifier;
     private float scoreModifier;
-    private float basePhaseTime;
-    public Phases phasething;
-    public float phaseTimeModifier;
-    public int scoreThreshold;//for utility > is good stuff < is bad stuff idk
+
     bool invincible;
-    public float healthRegain;
+
+    public float healModifier;
+
+    public float bonusDamagePointModifier;
+
+    public bool charging;
+    public float chargeModifier;
+    public float chargePointModifier;
+
+    
+    public bool vampire;
+    public float vampireHealModifier;
+    public float vampireHealPointModifier;
+    
+    public bool poisonAttack;
+    public List<Poison> poisons;
+    public int poisonLength;
+    public float poisonDamageModifier;
+    public float poisonDamagePointModifier;
+
+    [SerializeField] public Image[] statuses;
+    public bool skipped;
+    public bool rest;
+
     private float damage;
     // Start is called before the first frame update
     void Start()
     {
-        basePhaseTime = phasething.phaseTime;
+        poisons = new List<Poison>();
+        skipped = false;
+        vampire = false;
+        charging = false;
+        for(int i = 0; i < 4; i++)
+            statuses[i].color = new Color(statuses[i].color.r, statuses[i].color.g, statuses[i].color.b, 0f);
         scoreModifier = baseScoreModifier;
     }
 
@@ -32,9 +59,14 @@ public class Combat : MonoBehaviour
     public void Attack(int roll, int score)
     {
         Debug.Log("a");
-
-
         float rollMulti = 1;
+        if(roll == 1)
+        {
+            charging = true;
+            chargeModifier = score*chargePointModifier;
+            rollMulti = 0f;
+            statuses[0].color = new Color(statuses[0].color.r, statuses[0].color.g, statuses[0].color.b, 255);
+        }
         if(roll > 2)
         {
             rollMulti = 1.3f;
@@ -47,9 +79,27 @@ public class Combat : MonoBehaviour
         {
             rollMulti = 1.9f;
         }
-
+        if(skipped || rest)
+        {
+            damage = 0;
+            skipped = false;
+            rest = false;
+        }
         damage = (scoreModifier * score) * rollMulti;
-        GameManager.Instance.boss._bossHealth.changeHealth(-damage);
+        Debug.Log(damage);
+        if(damage != 0)
+        {
+            if(poisonAttack)
+            { 
+                poisonAttack = false;
+                poisons.Add(new Poison(poisonDamageModifier*damage, poisonLength));
+                statuses[2].color = new Color(statuses[2].color.r, statuses[2].color.g, statuses[2].color.b, 0f);
+            }
+            scoreModifier = baseScoreModifier;
+            statuses[3].color = new Color(statuses[3].color.r, statuses[3].color.g, statuses[3].color.b, 0f);
+
+            DealDamagetoBoss(damage);
+        }
         
     }
     public void Defense(int roll, int score)
@@ -64,80 +114,63 @@ public class Combat : MonoBehaviour
     }
     public void Utility(int roll, int score)
     {
-        phasething.phaseTime = basePhaseTime;
-        scoreModifier = baseScoreModifier;
+        if(vampire)
+            vampire = false;
         //Debug.Log("u");
-        int current = roll;
+        int current = 4;
         int previous = GameManager.Instance.previousRoll;
         if(current == 1)
         {
-            //Debug.Log("1");
-            //increase/decrease diceindex, if below dec, if above inc
-            if(score < scoreThreshold)
-            {
-                //Debug.Log("?");
-                if(GameManager.Instance.currentDiceIndex > 1)
-                    GameManager.Instance.currentDiceIndex--;
-            }
-            else
-            {
-                //Debug.Log("cool");
-                if(GameManager.Instance.currentDiceIndex < GameManager.Instance.maxDiceIndex)
-                {
-                    GameManager.Instance.currentDiceIndex++;
-                   }
-            }
+            skipped = true;
         }
-        else if(current == 2  || current == 3)
+        else if(current == 2)
         {
-            //Debug.Log("2");
-            //only heal if under threshold, regain a ball if over
-            if(score < scoreThreshold)
-            {
-                GameManager.Instance.phealth.changeHealth(healthRegain);
-            }
-            else
-            {
-                //Debug.Log("wait");
-                GameManager.Instance.phealth.changeHealth(GameManager.Instance.phealth.maxHealth);
-                if(GameManager.Instance.phealth.ballsLeft < GameManager.Instance.phealth.balls.Length)
-                    GameManager.Instance.phealth.changeBalls(1);
-            }
+            Utility(3, score);
+            rest = true;
         }
-        else if(current == 4 || current == 5)
+        else if(current == 3)
         {
-            //Debug.Log("4");
-            if(score < scoreThreshold)
-            {
-                phasething.phaseTime-=phaseTimeModifier;
-                phasething.timerBar.maxValue-=phaseTimeModifier;
-            }
-            else
-            {
-                phasething.phaseTime+=phaseTimeModifier;
-                phasething.timerBar.maxValue+=phaseTimeModifier;
-            }
+            //Debug.Log("3");
+            float heal = healModifier*score;
+            GameManager.Instance.phealth.Heal(heal);
+        }
+        else if(current == 4)
+        {
+            poisonAttack = true;
+            poisonDamageModifier = score*poisonDamagePointModifier;
+            statuses[2].color = new Color(statuses[2].color.r, statuses[2].color.g, statuses[2].color.b, 255);
+
+        }
+        else if(current == 5)
+        {
+            vampire = true;
+            vampireHealModifier = score*vampireHealPointModifier;
+            statuses[1].color = new Color(statuses[1].color.r, statuses[1].color.g, statuses[1].color.b, 255);
+
         }
         else if(current == 6)
         {
             //Debug.Log("6");
-            if(score < scoreThreshold)
-            {
-                scoreModifier = scoreModifier*0.5f;
-            }
-            else
-            {
-                scoreModifier = scoreModifier*2;
-            }
+            scoreModifier = ((float) Math.Log(score))*bonusDamagePointModifier;
+            statuses[3].color = new Color(statuses[3].color.r, statuses[3].color.g, statuses[3].color.b, 255);
             if(previous == 6 && GameManager.Instance.currentRoll == 6)
-                invincible = true;
+                scoreModifier*=2;
         }
-        else
+    }
+    public void DealDamagetoBoss(float amount)
+    {
+        if(charging)
         {
-            //Debug.Log(":)");
-            Defense(1, score);
-            Defense(2, score);
-            Defense(6, score);
+            amount = amount*chargeModifier;
+            charging = false;
+            statuses[0].color = new Color(statuses[0].color.r, statuses[0].color.g, statuses[0].color.b, 0f);
         }
+        if(vampire)
+        {
+            GameManager.Instance.phealth.changeHealth(amount*vampireHealModifier);
+            vampire = false;
+            statuses[1].color = new Color(statuses[1].color.r, statuses[1].color.g, statuses[1].color.b, 0f);
+        }
+        GameManager.Instance.boss._bossHealth.changeHealth(-amount);
     }
 }

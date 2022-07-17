@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Phases : MonoBehaviour
 {
+    public float basePhaseTime;
     public float phaseTime;
     public Slider timerBar;
     private float timeLeft;
@@ -19,6 +20,7 @@ public class Phases : MonoBehaviour
     // Start is called before the first frame updatea
     void Start()
     {
+        phaseTime = basePhaseTime;
         timerBar.maxValue = phaseTime;
         timergo = false;
         whatdo = new Dictionary<int, Action<int, int>>
@@ -33,16 +35,35 @@ public class Phases : MonoBehaviour
     {
         while(true)
         {
-            GameManager.Instance.RollCurrentDice();
+            if((todo.rest || todo.skipped) && currentState == 0)
+            {
+                phaseTime = 0;
+            }
+            else
+            {
+                GameManager.Instance.RollCurrentDice();
+                phaseTime = basePhaseTime;
+            }
             timeLeft = phaseTime;
             timergo = true;
             yield return new WaitForSeconds(phaseTime);
             timergo = false;
             //score = actualScore, roll = rolled, < implement later with these taking from gamemanager
-            whatdo[currentState](GameManager.Instance.currentRoll, PinballController.Instance.currentPoints);//placeholder for now
+            yield return new WaitForSeconds(buffer);
+            whatdo[currentState](GameManager.Instance.currentRoll, PinballController.Instance.currentPoints);
+            //poison
+            for(int i = todo.poisons.Count-1; i >= 0 ; i--)
+            {
+                Debug.Log("poison");
+                Debug.Log(todo.poisons[i].damage);
+                todo.DealDamagetoBoss(todo.poisons[i].damage);
+                todo.poisons[i].phasesLeft--;
+                if(todo.poisons[i].phasesLeft == 0)
+                    todo.poisons.Remove(todo.poisons[i]);
+            }
             PinballController.Instance.currentPoints = 0;
             //for animations?
-            yield return new WaitForSeconds(buffer);
+            
             currentState++;
             if(currentState > 2)
                 currentState = 0;

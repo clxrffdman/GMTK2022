@@ -7,7 +7,7 @@ public class Health : MonoBehaviour
 {
     public bool alive;
     public float maxHealth;
-    protected float health;
+    public float health;
     public Slider bar;
     // Start is called before the first frame update
     public virtual void Start()
