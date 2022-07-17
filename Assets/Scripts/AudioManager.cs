@@ -12,6 +12,7 @@ public class AudioManager : MonoBehaviour
     public List<AudioClip> generalSFX;
     public List<AudioClip> boardSFX;
     public List<AudioClip> uiSFX;
+    public List<AudioClip> fightSFX;
 
     // Start is called before the first frame update
     void Awake()
@@ -83,6 +84,18 @@ public class AudioManager : MonoBehaviour
         }
         
         sound.GetComponent<SoundSample>().SpawnSound(uiSFX[input], 0, 1);
+        return (GameObject)sound;
+    }
+
+    public GameObject PlayFightSFX(int input)
+    {
+        var sound = Instantiate(SFXInstance, transform.position, Quaternion.identity);
+        if (GameManager.Instance != null)
+        {
+            sound.transform.parent = GameManager.Instance.soundParent;
+        }
+
+        sound.GetComponent<SoundSample>().SpawnSound(fightSFX[input], 0, 1);
         return (GameObject)sound;
     }
 

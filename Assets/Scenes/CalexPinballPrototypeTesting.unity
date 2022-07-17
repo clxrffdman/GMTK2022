@@ -7352,6 +7352,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8725120129513326796, guid: eb3c4dc58856c5f4ca440e570a7f54c6,
         type: 3}
+      propertyPath: fightSFX.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8725120129513326796, guid: eb3c4dc58856c5f4ca440e570a7f54c6,
+        type: 3}
       propertyPath: boardSFX.Array.data[4]
       value: 
       objectReference: {fileID: 8300000, guid: 5a98cd9f285e6094cb4daebfa583ab5c, type: 3}

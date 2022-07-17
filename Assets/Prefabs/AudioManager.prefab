@@ -59,12 +59,36 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9cade7c44a3bd6d4bb01aab98d3d794a, type: 3}
   - {fileID: 8300000, guid: 9d71076a22c8dfc4c8781190ce00e9c6, type: 3}
   - {fileID: 8300000, guid: cc79fe35d1a8020448ad99cec42168f1, type: 3}
-  enemyVoiceLines: []
+  enemyVoiceLines:
+  - {fileID: 8300000, guid: 5166cd4b202a3cf4686c208802ba5384, type: 3}
+  - {fileID: 8300000, guid: abae7fc7a7cca0f40af83bebb480f76b, type: 3}
+  - {fileID: 8300000, guid: 4fc670997b83d5c4ba400541c1c47fc6, type: 3}
+  - {fileID: 8300000, guid: a608e1bdbb6335c40b83c661fae4a707, type: 3}
+  - {fileID: 8300000, guid: 305e988003c1e844fa0cd9717fa10a11, type: 3}
+  - {fileID: 8300000, guid: 4b42bdd6444869f41bb71a5d7efb0ddc, type: 3}
+  - {fileID: 8300000, guid: 8fe78fa58622a834c9484bb624a21377, type: 3}
+  - {fileID: 8300000, guid: 14fee1d8aa954864386f28ff8c2a8f10, type: 3}
+  - {fileID: 8300000, guid: 0b4c96977934c774dbe1d33008572bde, type: 3}
+  - {fileID: 8300000, guid: abdeea770f815e248adecc525f1d133c, type: 3}
   generalSFX: []
   boardSFX:
   - {fileID: 8300000, guid: 672d380d47bc9394eabede3ae2d30657, type: 3}
   - {fileID: 8300000, guid: f58134cda1f6be04cb9e12832af0e212, type: 3}
   - {fileID: 8300000, guid: 7b5b44ab10ac5b543b5db6e78f986912, type: 3}
   - {fileID: 8300000, guid: ad97e1706ed505441b83e91a718254fc, type: 3}
+  - {fileID: 8300000, guid: 5a98cd9f285e6094cb4daebfa583ab5c, type: 3}
+  - {fileID: 8300000, guid: 0527eb6f6e6174e4fa9a12bf79e9340f, type: 3}
+  - {fileID: 8300000, guid: 40fff72b211ddb645976e593f08d5a12, type: 3}
+  - {fileID: 8300000, guid: 0ce1d98b98c3dcd44952151bba486215, type: 3}
+  - {fileID: 8300000, guid: 102faac3af742ad499380b3094c499f0, type: 3}
   uiSFX:
   - {fileID: 8300000, guid: 9b03933374eea284cbe8ee01dc77b8bf, type: 3}
+  - {fileID: 8300000, guid: f5b5f111804ed834e9e7f7388aed62ed, type: 3}
+  fightSFX:
+  - {fileID: 8300000, guid: 7e2e168a9ab2f9a4bae941e378c0500c, type: 3}
+  - {fileID: 8300000, guid: 2c5e05481897e19438904f4eb924349b, type: 3}
+  - {fileID: 8300000, guid: b0a2cc592fc792e469495401a3172c5d, type: 3}
+  - {fileID: 8300000, guid: 2929ee655a6d9a243b1a73ebd013c27b, type: 3}
+  - {fileID: 8300000, guid: 2a504dac6f2f67541bbbcc8ccbca6c7a, type: 3}
+  - {fileID: 8300000, guid: 74f3a20c058de99449287e7ee88adfeb, type: 3}
+  - {fileID: 8300000, guid: a881a84fdd651934b87dfb9a79845294, type: 3}
