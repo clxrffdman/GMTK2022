@@ -109,7 +109,7 @@ public class Combat : MonoBehaviour
             }
             damage = (scoreModifier * score) * rollMulti;
             Debug.Log(damage);
-            if(!charging)
+            if(storedroll != 1)
             {
                 if(poisonAttack)
                 { 
@@ -304,7 +304,6 @@ public class Combat : MonoBehaviour
     {
         if(amount > GameManager.Instance.phealth.health)
         {
-            GameManager.Instance.phealth.health = GameManager.Instance.phealth.maxHealth;
             GameManager.Instance.phealth.Death();
         }
         else
