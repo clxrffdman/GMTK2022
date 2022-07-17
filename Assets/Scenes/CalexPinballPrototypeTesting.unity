@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6289,6 +6289,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &688278417673128400 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4490219057461716026, guid: 71879f45ae37e074eac7860b619aa9cb,
+    type: 3}
+  m_PrefabInstance: {fileID: 688278417673128397}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1662855411519815725
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7104,6 +7110,11 @@ PrefabInstance:
       propertyPath: boss
       value: 
       objectReference: {fileID: 1277977788}
+    - target: {fileID: 8613795580928232711, guid: 81e050afc1db79046ab405812ad6d037,
+        type: 3}
+      propertyPath: diceAnim
+      value: 
+      objectReference: {fileID: 688278417673128400}
     - target: {fileID: 8613795580928232711, guid: 81e050afc1db79046ab405812ad6d037,
         type: 3}
       propertyPath: exitZone

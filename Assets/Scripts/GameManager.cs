@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     public int previousRoll;
     public TextMeshProUGUI diceRollText;
     public List<AudioClip> diceRollSFXList;
+    public Animator diceAnim;
 
 
     private void Awake()
@@ -86,7 +87,7 @@ public class GameManager : MonoBehaviour
         var sound = Instantiate(SFXInstance, transform.position, Quaternion.identity);
         sound.transform.parent = GameManager.Instance.soundParent;
         sound.GetComponent<SoundSample>().SpawnSound(diceRollSFXList[Random.Range(0, 2)], 0, 1);
-
+        
         previousRoll = currentRoll;
         currentRoll = Random.Range(1, currentDiceIndex + 1);
         StartCoroutine(UpdateDiceRollText());
@@ -98,10 +99,12 @@ public class GameManager : MonoBehaviour
         int iterations = 10;
         for (int i = 0; i < iterations; i++)
         {
+            diceAnim.Play("dice" + Random.Range(1, currentDiceIndex + 1));
             diceRollText.text = Random.Range(1, currentDiceIndex + 1) + "";
             yield return new WaitForSeconds(0.05f);
         }
         diceRollText.text = currentRoll + "";
+        diceAnim.Play("dice" +currentRoll);
 
     }
 
