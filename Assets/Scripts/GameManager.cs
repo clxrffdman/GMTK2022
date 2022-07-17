@@ -57,7 +57,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         UpdateUIText();
-        LaunchBall();
+        if (isLaunching)
+        {
+            LaunchBall();
+        }
+        
         if (Input.GetKeyDown(KeyCode.S))
         {
             //StopCoroutine(ShakeTable());
@@ -130,6 +134,7 @@ public class GameManager : MonoBehaviour
         if(phealth.alive)
         {
             phealth.changeBalls(-1);
+            isLaunching = true;
             if (nextPseudoball != null)
             {
                 Destroy(nextPseudoball);

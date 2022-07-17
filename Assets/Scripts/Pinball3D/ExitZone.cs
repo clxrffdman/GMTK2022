@@ -22,7 +22,7 @@ public class ExitZone : MonoBehaviour
         if (other.transform.tag == "Player")
         {
             effectWall.SetActive(true);
-
+            GameManager.Instance.isLaunching = false;
         }
 
 
