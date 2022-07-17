@@ -8,11 +8,8 @@ public class RerollZone : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            if (other.transform.GetComponent<PinballMovement>().rb.velocity.z > 0)
-            {
-                GameManager.Instance.RollCurrentDice();
-            }
-            
+            GameManager.Instance.RollCurrentDice();
+
         }
     }
 }

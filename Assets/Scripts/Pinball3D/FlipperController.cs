@@ -10,6 +10,7 @@ public class FlipperController : MonoBehaviour
     [SerializeField] private HingeJoint _rightJoint;
     private JointSpring leftSpring;
     private JointSpring rightSpring;
+    public float angle;
     public float springAmt;
     public float dampValue;
 
@@ -30,7 +31,7 @@ public class FlipperController : MonoBehaviour
         
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            leftSpring.targetPosition = -40;
+            leftSpring.targetPosition = -angle;
             //_leftFlipper.localEulerAngles += new Vector3(0, 0, 2f);
         }
         else
@@ -40,7 +41,7 @@ public class FlipperController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            rightSpring.targetPosition = 40;
+            rightSpring.targetPosition = angle;
             
             //_leftFlipper.localEulerAngles += new Vector3(0, 0, 2f);
         }
