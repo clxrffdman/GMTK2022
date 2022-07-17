@@ -9,13 +9,13 @@ public class Health : MonoBehaviour
     public float maxHealth;
     public float health;
     public Slider bar;
+    public RectTransform barSub;
     public Animator anim;
     // Start is called before the first frame update
     public virtual void Start()
     {
         anim.SetBool("happy", true);
         alive = true;
-        bar.maxValue = maxHealth;
         health = maxHealth;
         setBar();
     }
@@ -33,7 +33,8 @@ public class Health : MonoBehaviour
     }
     public void setBar()
     {
-        bar.value = health;
+        //bar.value = health;
+        barSub.localScale = new Vector3(1.0884f * (health / maxHealth), 1.0884f, 1.0884f);
     }
     public void changeHealth(float amount)
     {
