@@ -193,11 +193,14 @@ public class GameManager : MonoBehaviour
 
     public void Defeat()
     {
-
+        int rng = UnityEngine.Random.Range(0, 3) + 3;
+        AudioManager.Instance.PlayEnemyLine(rng);
     }
 
     public void Victory()
     {
+            int rng = UnityEngine.Random.Range(0, 3) + 7;
+                AudioManager.Instance.PlayEnemyLine(rng);
 
     }
 }

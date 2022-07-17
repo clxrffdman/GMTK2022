@@ -6,6 +6,7 @@ using System;
 
 public class Combat : MonoBehaviour
 {   
+    public int storedroll;
     //posion affects opposite person
     [Header("Player")]
     public float baseScoreModifier;
@@ -15,8 +16,6 @@ public class Combat : MonoBehaviour
 
     public float healModifier;
 
-    public float bonusDamagePointModifier;
-    
     public bool charging;
     public float chargePointModifier;
 
@@ -39,7 +38,6 @@ public class Combat : MonoBehaviour
     public bool moreDamage;
     public float moreBaseDamage;
     public float damagePointModifier;
-    public float baseDamageModifier;
 
     public bool bpoisonAttack;
     public List<Poison> bpoisons;
@@ -76,86 +74,102 @@ public class Combat : MonoBehaviour
     }
     public void Attack(int roll, int score)
     {
-        Debug.Log("a");
-        float rollMulti = 1;
-        if(roll == 1f)
+        if(!skipped && !rest)
         {
-            charging = true;
-            rollMulti = 0f;
-            statuses[0].color = new Color(statuses[0].color.r, statuses[0].color.g, statuses[0].color.b, 255);
-        }
-        if(roll > 2)
-        {
-            rollMulti = 1.3f;
-        }
-        if (roll > 3f)
-        {
-            rollMulti = 1.6f;
-        }
-        if (roll == 6f)
-        {
-            SkipBoss();
-        }
-        damage = (scoreModifier * score) * rollMulti;
-        if(skipped || rest)
-        {
-            damage = 0;
-            removeSkipPlayer();
-            rest = false;
-        }
-        Debug.Log(damage);
-        if(damage != 0)
-        {
-            if(poisonAttack)
-            { 
-                poisonAttack = false;
-                poisons.Add(new Poison(((float) Math.Log(score+1))*poisonDamagePointModifier*damage, poisonLength));
-                statuses[2].color = new Color(statuses[2].color.r, statuses[2].color.g, statuses[2].color.b, 0f);
+            storedroll = roll;
+            Debug.Log("a");
+            float rollMulti = 1;
+            if(roll == 1)
+            {
+                charging = true;
+                rollMulti = 0f;
+                statuses[0].color = new Color(statuses[0].color.r, statuses[0].color.g, statuses[0].color.b, 255);
             }
-            scoreModifier = baseScoreModifier;
-            statuses[3].color = new Color(statuses[3].color.r, statuses[3].color.g, statuses[3].color.b, 0f);
+            if(roll == 2)
+            {
+                                    AudioManager.Instance.PlayFightSFX(4);
 
-            DealDamagetoBoss(damage);
+            }
+            else if(roll > 2)
+            {
+                                    AudioManager.Instance.PlayFightSFX(6);
+
+                rollMulti = 1.3f;
+            }
+            else if (roll > 3)
+            {
+                                    AudioManager.Instance.PlayFightSFX(2);
+
+                rollMulti = 1.6f;
+            }
+            if (roll == 6)
+            {
+                AudioManager.Instance.PlayEnemyLine(6);
+                SkipBoss();
+            }
+            damage = (scoreModifier * score) * rollMulti;
+            Debug.Log(damage);
+            if(damage != 0)
+            {
+                if(poisonAttack)
+                { 
+                    poisonAttack = false;
+                    poisons.Add(new Poison(((float) Math.Log(score+1))*poisonDamagePointModifier*damage, poisonLength));
+                    statuses[2].color = new Color(statuses[2].color.r, statuses[2].color.g, statuses[2].color.b, 0f);
+                }
+                scoreModifier = baseScoreModifier;
+                statuses[3].color = new Color(statuses[3].color.r, statuses[3].color.g, statuses[3].color.b, 0f);
+                DealDamagetoBoss(damage);
+            }
         }
-        
     }
     public void Defense(int roll, int score)
     {
+        storedroll = roll;
         bAttack(roll, score);
     }
     public void Utility(int roll, int score)
     {
-        if(vampire)
-            vampire = false;
+        storedroll = roll;
         //Debug.Log("u");
         int current = roll;
         int rn;
         int previous = GameManager.Instance.previousRoll;
         if(current == 1)
         {
+                    AudioManager.Instance.PlayProtagLine(5);
+
             skipped = true;
+                            statuses[5].color = new Color(statuses[5].color.r, statuses[5].color.g, statuses[5].color.b, 255);
+
         }
         else if(current == 2)
         {
+            AudioManager.Instance.PlayProtagLine(4);
             moreDamage = true;
             bstatuses[3].color = new Color(bstatuses[3].color.r, bstatuses[3].color.g, bstatuses[3].color.b, 255);
         }
         else if(current == 3)
-        {
+        {            
             //Debug.Log("3");
             Utility(4, score);
             rest = true;
+                                        statuses[5].color = new Color(statuses[5].color.r, statuses[5].color.g, statuses[5].color.b, 255);
+
         }
         else if(current == 4)
         {
-            
+                         AudioManager.Instance.PlayProtagLine(1);
+
             float heal = healModifier*score;
             GameManager.Instance.phealth.Heal(heal);
 
         }
         else if(current == 5)
         {
-            rn = UnityEngine.Random.Range(1, 3);
+                rn = UnityEngine.Random.Range(1, 3);
+            AudioManager.Instance.PlayProtagLine(7);
+            rn = 2;
             if(rn == 1)
             {
                 PoisonActivate(score);
@@ -168,13 +182,14 @@ public class Combat : MonoBehaviour
         }
         else if(current == 6)
         {
+             AudioManager.Instance.PlayProtagLine(6);
             //Debug.Log("6");
             rn = UnityEngine.Random.Range(1, 3);
             if(rn == 1)
             {
                 VampActivate(score);
             }
-            scoreModifier = scoreModifier*((float) Math.Log(score+1))*bonusDamagePointModifier;
+            scoreModifier = ((float) Math.Log(score+1))*scoreModifier;
             statuses[3].color = new Color(statuses[3].color.r, statuses[3].color.g, statuses[3].color.b, 255);
             /*if(previous == 6 && current == 6)
                 scoreModifier*=2;
@@ -185,6 +200,8 @@ public class Combat : MonoBehaviour
     {
                 poisonAttack = true;
                 statuses[2].color = new Color(statuses[2].color.r, statuses[2].color.g, statuses[2].color.b, 255);
+                                AudioManager.Instance.PlayFightSFX(4);
+
     }
     public void VampActivate(int score)
     {
@@ -231,6 +248,10 @@ public class Combat : MonoBehaviour
     }
     void bAttack(int roll, int score)
     {
+        if(!bskipped)
+        {
+                                AudioManager.Instance.PlayFightSFX(5);
+
         float calc;
         if(!moreDamage)
             calc = baseDamage - ((float) Math.Log(score+1))*damagePointModifier;
@@ -244,8 +265,17 @@ public class Combat : MonoBehaviour
         if(roll == 2f)
             bpoisonAttack = true;
         else if (roll == 1f)
+        {
+            AudioManager.Instance.PlayProtagLine(3);
             skipped = true;
-        else if (roll == 6f)
+            statuses[5].color = new Color(statuses[5].color.r, statuses[5].color.g, statuses[5].color.b, 255);
+        }
+        if (roll == 6f)
+        {
+            AudioManager.Instance.PlayProtagLine(10);
+            calc = 0;
+        }
+        if(bskipped)
             calc = 0;
         if(bpoisonAttack)
         { 
@@ -258,13 +288,13 @@ public class Combat : MonoBehaviour
         Debug.Log("hey");
         bstatuses[3].color = new Color(bstatuses[3].color.r, bstatuses[3].color.g, bstatuses[3].color.b, 0f);
         DealDamagetoPlayer(calc);
-        damagePointModifier = baseDamageModifier;
+        }
     }
     public void DealDamagetoPlayer(float amount)
     {
         if(amount > GameManager.Instance.phealth.health)
         {
-            amount = GameManager.Instance.phealth.health;
+            amount = GameManager.Instance.phealth.maxHealth;
             GameManager.Instance.phealth.changeBalls(-1);
         }
         else

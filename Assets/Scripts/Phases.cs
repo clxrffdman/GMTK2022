@@ -64,24 +64,37 @@ public class Phases : MonoBehaviour
             timergo = false;
             //anims?
             whatdo[currentState](GameManager.Instance.currentRoll, PinballController.Instance.currentPoints);
-            if(currentState == 0 && (!todo.rest || !todo.skipped))
+            if(currentState == 0 && (!todo.rest && !todo.skipped))
             {
-                if(GameManager.Instance.currentRoll > 4)
+                Debug.Log(todo.storedroll);
+                if(todo.storedroll > 4)
                 {
                     bEffect.SetInteger("type", 3);
                 }
-                else if(GameManager.Instance.currentRoll > 2)
+                else if(todo.storedroll > 2)
                 {
                     bEffect.SetInteger("type", 2);
                 }
-                else if(GameManager.Instance.currentRoll == 2)
+                else if(todo.storedroll == 2)
                 {
                     bEffect.SetInteger("type", 1);
                 }
             }
+            if(currentState == 0)
+            {
+                todo.removeSkipPlayer();
+                todo.rest = false;
+                todo.statuses[5].color = new Color(todo.statuses[5].color.r, todo.statuses[5].color.g, todo.statuses[5].color.b, 0f);
+                }
             if(currentState == 1 && !todo.bskipped)
             {
                 pEffect.SetBool("attack", true);
+            }
+            if(currentState == 1)
+            {
+                todo.bskipped = false;
+                todo.bstatuses[5].color = new Color(todo.bstatuses[5].color.r, todo.bstatuses[5].color.g, todo.bstatuses[5].color.b, 0f);
+
             }
             yield return new WaitForSeconds(buffer);
             bEffect.SetInteger("type", 0);
