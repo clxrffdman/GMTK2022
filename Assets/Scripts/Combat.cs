@@ -158,12 +158,15 @@ public class Combat : MonoBehaviour
             //Debug.Log("3");
             Utility(4, score);
             rest = true;
-                                        statuses[5].color = new Color(statuses[5].color.r, statuses[5].color.g, statuses[5].color.b, 255);
+            statuses[5].color = new Color(statuses[5].color.r, statuses[5].color.g, statuses[5].color.b, 255);
 
         }
         else if(current == 4)
         {
-                         AudioManager.Instance.PlayProtagLine(1);
+        
+            AudioManager.Instance.PlayFightSFX(3);
+            if(storedroll == 4)
+                AudioManager.Instance.PlayProtagLine(1);
 
             float heal = healModifier*score;
             GameManager.Instance.phealth.Heal(heal);
@@ -171,6 +174,8 @@ public class Combat : MonoBehaviour
         }
         else if(current == 5)
         {
+        
+            AudioManager.Instance.PlayFightSFX(1);
                 rn = UnityEngine.Random.Range(1, 3);
             AudioManager.Instance.PlayProtagLine(7);
             rn = 2;
@@ -186,6 +191,7 @@ public class Combat : MonoBehaviour
         }
         else if(current == 6)
         {
+            AudioManager.Instance.PlayFightSFX(1);
              AudioManager.Instance.PlayProtagLine(6);
             //Debug.Log("6");
             rn = UnityEngine.Random.Range(1, 3);
