@@ -76,7 +76,7 @@ public class PlayerHealth : Health
     {
         alive = false;
         anim.SetBool("happy", false);
-
+        GameManager.Instance.Defeat();
         //idk yet
     }
 }
