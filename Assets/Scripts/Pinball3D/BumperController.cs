@@ -9,7 +9,7 @@ public class BumperController : MonoBehaviour
 
     // Start is called before the first frame update
 
-    private void OnCollisionEnter(Collision collision)
+    public virtual void OnCollisionEnter(Collision collision)
     {
         if(collision.transform.tag == "Player")
         {

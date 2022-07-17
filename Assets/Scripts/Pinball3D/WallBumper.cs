@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WallBumper : MonoBehaviour
+public class WallBumper : BumperController
 {
     // Start is called before the first frame update
-    void Start()
+    public override void OnCollisionEnter(Collision collision)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (collision.transform.tag == "Player")
+        {
+            collision.transform.GetComponent<PinballMovement>().rb.AddForce(Vector3.Normalize(collision.GetContact(0).normal) * -bumpForceMultiplier, ForceMode.Impulse);
+            AudioManager.Instance.PlayBoardSFX(0);
+        }
     }
 }
