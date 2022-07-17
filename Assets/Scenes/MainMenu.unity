@@ -1196,14 +1196,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Art - Brandon Wang + Gloria Chim + Logan ???
+  m_text: 'Art - Brandon Wang + Gloria Chim + Logan Kirkland
 
     Design - Ian Chi
 
     Programming
     - Calex Raffield + Frank Zhang
 
-    Sound - Dylan Mahler + Enrico Widodo + Logan
+    Sound - Dylan ''marigold'' Mahler + Enrico
+    Widodo + Logan Kirkland
 
 
 '
