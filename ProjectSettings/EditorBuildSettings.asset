@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 973c91ea5dd8aac4ab4efd84840b1801
+  - enabled: 1
     path: Assets/Scenes/CalexPinballPrototypeTesting.unity
     guid: a064e9b47ae07a442b7510bf4f4077fa
   m_configObjects: {}

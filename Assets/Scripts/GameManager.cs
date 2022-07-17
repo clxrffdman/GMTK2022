@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [Header("Generics")]
     public GameObject SFXInstance;
     public Transform soundParent;
+    public GameObject currentPullSound;
     [Header("Pinball Objects/Stats")]
     public GameObject nextPseudoball;
     public PlayerHealth phealth;
@@ -37,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
         }
@@ -61,7 +62,7 @@ public class GameManager : MonoBehaviour
         {
             LaunchBall();
         }
-        
+
         if (Input.GetKeyDown(KeyCode.S))
         {
             //StopCoroutine(ShakeTable());
@@ -72,7 +73,7 @@ public class GameManager : MonoBehaviour
     void UpdateUIText()
     {
         pointText.text = currentPinball.currentPoints + "";
-        
+
     }
 
     public void DoAttack()
@@ -84,7 +85,7 @@ public class GameManager : MonoBehaviour
     {
         var sound = Instantiate(SFXInstance, transform.position, Quaternion.identity);
         sound.transform.parent = GameManager.Instance.soundParent;
-        sound.GetComponent<SoundSample>().SpawnSound(diceRollSFXList[Random.Range(0,2)], 0, 1);
+        sound.GetComponent<SoundSample>().SpawnSound(diceRollSFXList[Random.Range(0, 2)], 0, 1);
 
         previousRoll = currentRoll;
         currentRoll = Random.Range(1, currentDiceIndex + 1);
@@ -95,7 +96,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator UpdateDiceRollText()
     {
         int iterations = 10;
-        for(int i = 0; i < iterations; i++)
+        for (int i = 0; i < iterations; i++)
         {
             diceRollText.text = Random.Range(1, currentDiceIndex + 1) + "";
             yield return new WaitForSeconds(0.05f);
@@ -107,19 +108,23 @@ public class GameManager : MonoBehaviour
     public IEnumerator ShakeTable()
     {
         Vector3 ogPos = masterTableObj.transform.position;
-        LeanTween.value(gameObject, 0f, 1f, 0.1f).setOnUpdate((float val) => {
+        LeanTween.value(gameObject, 0f, 1f, 0.1f).setOnUpdate((float val) =>
+        {
             masterTableObj.transform.position = ogPos + new Vector3(val, 0, 0);
         });
         yield return new WaitForSeconds(0.1f);
-        LeanTween.value(gameObject, 0f, 1f, 0.1f).setOnUpdate((float val) => {
+        LeanTween.value(gameObject, 0f, 1f, 0.1f).setOnUpdate((float val) =>
+        {
             masterTableObj.transform.position = ogPos + new Vector3(-val, 0, 0);
         });
         yield return new WaitForSeconds(0.1f);
-        LeanTween.value(gameObject, 0f, 1f, 0.1f).setOnUpdate((float val) => {
+        LeanTween.value(gameObject, 0f, 1f, 0.1f).setOnUpdate((float val) =>
+        {
             masterTableObj.transform.position = ogPos + new Vector3(val, 0, 0);
         });
         yield return new WaitForSeconds(0.1f);
-        LeanTween.value(gameObject, 0f, 1f, 0.1f).setOnUpdate((float val) => {
+        LeanTween.value(gameObject, 0f, 1f, 0.1f).setOnUpdate((float val) =>
+        {
             masterTableObj.transform.position = ogPos + new Vector3(-val, 0, 0);
         });
         yield return new WaitForSeconds(0.1f);
@@ -131,7 +136,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetBall()
     {
-        if(phealth.alive)
+        if (phealth.alive)
         {
             phealth.changeBalls(-1);
             isLaunching = true;
@@ -147,26 +152,38 @@ public class GameManager : MonoBehaviour
         {
             Defeat();
         }
-        
+
     }
 
     public void LaunchBall()
     {
+        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.Space))
+        {
+            currentPullSound = AudioManager.Instance.PlayBoardSFX(2);
+        }
+        //
         if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.Space))
         {
+
             exitZone.ResetEffectWall();
-            if(launchCharge < maxCharge)
+            if (launchCharge < maxCharge)
             {
                 launchCharge += Time.deltaTime * ballChargeRate;
             }
         }
-        else
-        {
-            currentPinball.GetComponent<PinballMovement>().rb.AddForce(0,0,baseLaunchMultiplier * launchCharge,ForceMode.Impulse);
-            launchCharge = 0;
-        }
-        chargeBar.transform.localScale = new Vector3(chargeBar.transform.localScale.x, 1 * (launchCharge/maxCharge), chargeBar.transform.localScale.z);
         
+        if(Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.Space))
+        {
+            currentPinball.GetComponent<PinballMovement>().rb.AddForce(0, 0, baseLaunchMultiplier * launchCharge, ForceMode.Impulse);
+            if(currentPullSound != null)
+            {
+                Destroy(currentPullSound);
+            }
+            launchCharge = 0;
+            AudioManager.Instance.PlayBoardSFX(3);
+        }
+        chargeBar.transform.localScale = new Vector3(chargeBar.transform.localScale.x, 1 * (launchCharge / maxCharge), chargeBar.transform.localScale.z);
+
     }
 
 

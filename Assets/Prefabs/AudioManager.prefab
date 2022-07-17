@@ -61,4 +61,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cc79fe35d1a8020448ad99cec42168f1, type: 3}
   enemyVoiceLines: []
   generalSFX: []
+  boardSFX:
+  - {fileID: 8300000, guid: 672d380d47bc9394eabede3ae2d30657, type: 3}
+  - {fileID: 8300000, guid: f58134cda1f6be04cb9e12832af0e212, type: 3}
+  - {fileID: 8300000, guid: 7b5b44ab10ac5b543b5db6e78f986912, type: 3}
+  - {fileID: 8300000, guid: ad97e1706ed505441b83e91a718254fc, type: 3}
   uiSFX: []
