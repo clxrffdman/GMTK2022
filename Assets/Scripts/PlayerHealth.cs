@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerHealth : Health
 {
     public int ballsLeft;
     public int maxBalls;
-    [SerializeField] public Image[] balls;
+    public Image balls;
+    public TextMeshProUGUI number;
     // Start is called before the first frame update
     new void Start()
     {
-        ballsLeft = maxBalls;
         base.Start();
         BallsUI();
     }
@@ -62,13 +63,14 @@ public class PlayerHealth : Health
     }
     public void BallsUI()
     {
-        for(int i = 0; i < maxBalls; i++)
+        number.text = "" + ballsLeft;
+        /*for(int i = 0; i < maxBalls; i++)
         {
             if(i < ballsLeft)
                 balls[i].color = new Color(balls[i].color.r, balls[i].color.g, balls[i].color.b, 255);
             else
                 balls[i].color = new Color(balls[i].color.r, balls[i].color.g, balls[i].color.b, 0);
-        }
+        }*/
     }
     public void GameOver()
     {
