@@ -30,7 +30,7 @@ public class FlipperController : MonoBehaviour
         
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            leftSpring.targetPosition = -80;
+            leftSpring.targetPosition = -60;
             //_leftFlipper.localEulerAngles += new Vector3(0, 0, 2f);
         }
         else
@@ -40,7 +40,7 @@ public class FlipperController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            rightSpring.targetPosition = 80;
+            rightSpring.targetPosition = 60;
             //_leftFlipper.localEulerAngles += new Vector3(0, 0, 2f);
         }
         else
