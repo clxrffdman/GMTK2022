@@ -31,7 +31,7 @@ public class Combat : MonoBehaviour
     public int poisonLength;
     public float poisonDamageModifier;
     public float poisonDamagePointModifier;
-
+    //statuses 0 = chargingattack, 1 = nextisvamp, 2 = nextispois, 3 = increaseddamage, 4 = poisoned, 5 = nextisstunned, maybe a sleep for rest
     [SerializeField] public Image[] statuses;
     public bool skipped;
     public bool rest;
@@ -98,13 +98,13 @@ public class Combat : MonoBehaviour
         }
         if (roll == 6f)
         {
-            bskipped = true;
+            SkipBoss();
         }
         damage = (scoreModifier * score) * rollMulti;
         if(skipped || rest)
         {
             damage = 0;
-            skipped = false;
+            removeSkipPlayer();
             rest = false;
         }
         Debug.Log(damage);
@@ -203,6 +203,28 @@ public class Combat : MonoBehaviour
                 vampireHealModifier = score*vampireHealPointModifier;
                 statuses[1].color = new Color(statuses[1].color.r, statuses[1].color.g, statuses[1].color.b, 255);
     }
+    public void SkipPlayer()
+    {
+        skipped = true;
+        statuses[5].color = new Color(statuses[5].color.r, statuses[5].color.g, statuses[5].color.b, 255);
+    }
+    public void removeSkipPlayer()
+    {
+        skipped = false;
+        statuses[5].color = new Color(statuses[5].color.r, statuses[5].color.g, statuses[5].color.b, 0f);
+    }
+    
+    public void SkipBoss()
+    {
+        bskipped = true;
+        bstatuses[5].color = new Color(bstatuses[5].color.r, bstatuses[5].color.g, bstatuses[5].color.b, 255);
+    }
+    public void removeSkipBoss()
+    {
+        bskipped = false;
+        bstatuses[5].color = new Color(bstatuses[5].color.r, bstatuses[5].color.g, bstatuses[5].color.b, 0f);
+    }
+
     public void DealDamagetoBoss(float amount)
     {
         if(charging)

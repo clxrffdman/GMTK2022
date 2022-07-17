@@ -35,6 +35,10 @@ public class Phases : MonoBehaviour
     {
         while(true)
         {
+            if(todo.poisons.Count != 0)
+                todo.statuses[4].color = new Color(todo.statuses[4].color.r, todo.statuses[4].color.g, todo.statuses[4].color.b, 255);
+            if(todo.bpoisons.Count != 0)
+                todo.bstatuses[4].color = new Color(todo.bstatuses[4].color.r, todo.bstatuses[4].color.g, todo.bstatuses[4].color.b, 255);
             if((todo.rest || todo.skipped) && currentState == 0)
             {
                 phaseTime = 0;
@@ -52,36 +56,43 @@ public class Phases : MonoBehaviour
             timergo = true;
             yield return new WaitForSeconds(phaseTime);
             timergo = false;
-            //score = actualScore, roll = rolled, < implement later with these taking from gamemanager
+            //anims?
             yield return new WaitForSeconds(buffer);
             whatdo[currentState](GameManager.Instance.currentRoll, PinballController.Instance.currentPoints);
             //poison
             if(currentState != 0)
             {
-            for(int i = todo.poisons.Count-1; i >= 0 ; i--)
-            {
-                Debug.Log("poison");
-                Debug.Log(todo.poisons[i].damage);
-                todo.DealDamagetoBoss(todo.poisons[i].damage);
-                todo.poisons[i].phasesLeft--;
-                if(todo.poisons[i].phasesLeft == 0)
-                    todo.poisons.Remove(todo.poisons[i]);
-            }
+                for(int i = todo.poisons.Count-1; i >= 0 ; i--)
+                {
+                    Debug.Log("poison");
+                    Debug.Log(todo.poisons[i].damage);
+                    todo.DealDamagetoBoss(todo.poisons[i].damage);
+                    todo.poisons[i].phasesLeft--;
+                    if(todo.poisons[i].phasesLeft == 0)
+                        todo.poisons.Remove(todo.poisons[i]);
+                }
+                if(todo.poisons.Count == 0)
+                {
+                    todo.statuses[4].color = new Color(todo.statuses[4].color.r, todo.statuses[4].color.g, todo.statuses[4].color.b, 0f);
+                }
             }
             if(currentState != 1)
             {
-            for(int i = todo.bpoisons.Count-1; i >= 0 ; i--)
-            {
-                Debug.Log("bpoison");
-                Debug.Log(todo.bpoisons[i].damage);
-                todo.DealDamagetoPlayer(todo.bpoisons[i].damage);
-                todo.bpoisons[i].phasesLeft--;
-                if(todo.bpoisons[i].phasesLeft == 0)
-                    todo.bpoisons.Remove(todo.bpoisons[i]);
-            }
+                for(int i = todo.bpoisons.Count-1; i >= 0 ; i--)
+                {
+                    Debug.Log("bpoison");
+                    Debug.Log(todo.bpoisons[i].damage);
+                    todo.DealDamagetoPlayer(todo.bpoisons[i].damage);
+                    todo.bpoisons[i].phasesLeft--;
+                    if(todo.bpoisons[i].phasesLeft == 0)
+                        todo.bpoisons.Remove(todo.bpoisons[i]);
+                }
+                if(todo.bpoisons.Count == 0)
+                {
+                    todo.bstatuses[4].color = new Color(todo.bstatuses[4].color.r, todo.bstatuses[4].color.g, todo.bstatuses[4].color.b, 0f);
+                }
             }
             PinballController.Instance.currentPoints = 0;
-            //for animations?
             
             currentState++;
             if(currentState > 2)
