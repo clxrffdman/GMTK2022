@@ -27,6 +27,9 @@ public class Phases : MonoBehaviour
         phaseTime = basePhaseTime;
         timerBar.maxValue = phaseTime;
         timergo = false;
+        
+        todo.poisons = new List<Poison>();
+        todo.bpoisons = new List<Poison>();
         whatdo = new Dictionary<int, Action<int, int>>
         {
             {0, todo.Attack},
