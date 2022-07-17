@@ -16,6 +16,6 @@ public class BallSpriteController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(_hostBall.transform.position.x, _hostBall.transform.position.y + 0.5f, _hostBall.transform.position.z);
+        transform.position = new Vector3(_hostBall.transform.position.x, _hostBall.transform.position.y + 5f, _hostBall.transform.position.z);
     }
 }
